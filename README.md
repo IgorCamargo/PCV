@@ -13,13 +13,16 @@ cidades [
 	"aracaju"    
 	"belo horizonte"    
 ]    
+
 rota [    
 	"1"    
 	"3"    
 	"2"    
 	"1"    
 ]    
+
 calcular rota    
+
 rota[x] -> dist 1a3 -> dit 3a2 -> dist 2a1 - soma total disso     
 --------------------------------------    
 belem - belo horizonte - aracaju - belem    
