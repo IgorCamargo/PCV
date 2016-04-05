@@ -23,9 +23,9 @@ rota [
 
 calcular rota    
 
-rota[x] -> dist 1a3 -> dit 3a2 -> dist 2a1 - soma total disso     
+rota[x] -> dist 1a3 -> dist 3a2 -> dist 2a1 - soma total disso     
 --------------------------------------    
-belem - belo horizonte - aracaju - belem    
+Belem - Belo Horizonte - Aracaju - Belem    
 --------------------------------------    
 >Lógica
 - Monta rotas aleatóriamente.
