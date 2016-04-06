@@ -33,3 +33,16 @@ Belem - Belo Horizonte - Aracaju - Belem
 - Selecionar as melhores rotas.
 - Eventualmente, realizar mutações nas piores rotas pós selecionadas (50%).
 - Analisar melhor rota quando chegar ao fim da geração.
+
+--------------------------------------
+Array cidades(matriz) -> 'cidade1','distancia','cidade2'
+- cidades[0][0] = 'cidade1'
+- cidades[0][1] = 'distancia'
+- cidades[0][2] = 'cidade2'
+
+Array rotas
+- rotas recebe cidades[x], cidades[x], cidades[x],...
+*onde x é um número randômico que não repete
+
+Compara distancia
+- compara cada linha do rota com cidades, acumulnado a distancia percorrida
