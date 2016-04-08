@@ -28,7 +28,7 @@ rota[x] -> dist 1a3 -> dist 3a2 -> dist 2a1 - soma total disso
 Belem - Belo Horizonte - Aracaju - Belem
 --------------------------------------    
 >Lógica Algoritmo Genético
-- Gerar população iincial.
+- Gerar população inicial.
 - Descartar uma parte dos indivíduos.
 - Aplicar operadores de reprodução.
 - Aplicar operadores de mutação.

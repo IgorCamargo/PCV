@@ -13,10 +13,6 @@
 	} 
 ?>
 
-
-
-
-
 <?php 
 	include("cliente-class.php"); 
 
@@ -30,3 +26,15 @@
 	echo "<br/>Nome do Cliente : ".$tempCliente->nome; 
 	echo "<br/>Nome do Saldo : ".$tempCliente->saldo; 
 ?>
+
+<!-- 
+método 01 -> gerar população - cromossomos
+método 02 -> avalia melhores e descarta piores - fitness
+método 03 -> método -> reprodução - crossover
+método 04 -> método -> mutação
+método 05 -> avalia melhores e descarta piores - fitness
+-->
+
+matriz cidades X distancias
+
+cidades - método 01
