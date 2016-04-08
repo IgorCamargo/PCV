@@ -25,7 +25,14 @@ calcular rota
 
 rota[x] -> dist 1a3 -> dist 3a2 -> dist 2a1 - soma total disso     
 --------------------------------------    
-Belem - Belo Horizonte - Aracaju - Belem    
+Belem - Belo Horizonte - Aracaju - Belem
+--------------------------------------    
+>Lógica Algoritmo Genético
+- Gerar população iincial.
+- Descartar uma parte dos indivíduos.
+- Aplicar operadores de reprodução.
+- Aplicar operadores de mutação.
+- Se o critério de parada foi satisfeito, encerrar, senão, voltar ao passo 2.
 --------------------------------------    
 >Lógica
 - Monta rotas aleatóriamente.
