@@ -35,6 +35,18 @@ método 04 -> método -> mutação
 método 05 -> avalia melhores e descarta piores - fitness
 -->
 
-matriz cidades X distancias
+classe Rota
 
-cidades - método 01
+	atributo cidadesXdistancia
+
+	método - população	-> cromossomos
+	método - fitness	-> melhores cromossomos
+	método - reprodução	-> crossover
+	método - mutação	-> mutação em cromossomos
+
+
+classe cidade
+
+	array de cidades
+
+	método pega distancia
