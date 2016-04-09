@@ -30,12 +30,4 @@
 		public function mutacao() {
 // realiza mutação dos cromossomos
 		}
-
-		método - população	-> cromossomos
-	método - fitness	-> melhores cromossomos
-	método - reprodução	-> crossover
-	método - mutação	-> mutação em cromossomos
-	}
-
-
 ?>
