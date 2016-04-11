@@ -16,9 +16,8 @@
 		// 	$this->prop1 = $newval;
 		// }
 		
-		public function getDistancias()
-		{
-			return $this->$distancias. "<br />";
+		public function getDistancias($partida, $chegada) {
+			return $this->distancias[$partida][$chegada];
 		}
 
 	}
@@ -46,9 +45,10 @@
 
 // testes -------------
 // cria objeto distancias
-	$distancias = new Cidade;
+	$distancia = new Cidade;
 // mostra objeto distancia
-	echo $distancia->getDistancias();
+	print_r($distancia->getDistancias('A','B'));
+
 
 
 // testes -------------
@@ -68,10 +68,10 @@
 	{
 	  public $prop1 = "Sou uma propriedade de classe!";
 	 
-	  public function setProperty($newval)
-	  {
-	      $this->prop1 = $newval;
-	  }
+	  // public function setProperty($newval)
+	  // {
+	  //     $this->prop1 = $newval;
+	  // }
 	 
 	  public function getProperty()
 	  {
@@ -88,8 +88,8 @@
 	echo $obj2->getProperty();
 	 
 	// Atribui novos valores para ambos os objetos
-	$obj->setProperty("Sou um novo valor de propriedade!");
-	$obj2->setProperty("Pertenço à segunda instância!");
+	// $obj->setProperty("Sou um novo valor de propriedade!");
+	// $obj2->setProperty("Pertenço à segunda instância!");
 	 
 	// Mostra o valor de $prop1 de ambos os objetos
 	echo $obj->getProperty();
