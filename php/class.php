@@ -38,14 +38,16 @@
 
 			for ($i=0; $i<2; $i++) {						// verifica se há cromossomos gêmeos
 				for ($y=0; $y<2; $y++) {
-					
+
+					$comparacao = 0;
+
 					if ($i!=$y) {
-						$comparacao = array_diff($cromossomoRota[$i], $cromossomoRota[$y]);
+						$comparacao = array_diff_assoc($cromossomoRota[$i], $cromossomoRota[$y]);
+						// print_r($comparacao);
+						if ($comparacao == null) {
+							echo "tem igual<br>";
+						} else { echo "não tem igual<br>"; }
 					}
-					if ($comparacao == 0) {
-						echo "não tem igual<br>";
-					} else { echo "tem igual<br>"; }
-					
 				}
 			}
 
