@@ -1,7 +1,6 @@
 <?php
 	class Cidade {
 		
-		// public $cidades = array("A", "B", "C", "D");
 		// --- $distancias['A']['B'] ---
 		public $distancias = array(
 			'A'	=> array( 'A' => 0		,'B' => 12		,'C' => 20		,'D' => 30	),
@@ -25,8 +24,31 @@
 
 	class Rota {
 
+		public $cidades = array("A", "B", "C", "D");
+
+		//private function sorteioRandomico() {
+		public function sorteioRandomico() {
+			// $min = 0;
+			// $max = 27;
+			
+			// for ($i=0; $i <= 27; $i++) { 
+			// 	echo $i."<br>";
+			// }
+
+			$arr = range(0,27);
+
+			shuffle( $arr );
+			foreach( $arr AS $each )
+			{
+				echo $each, '<br />';
+			}
+
+			// return rand($min, $max);
+		}
+
 		public function populacao() {
 //gera cromossomos das cidades
+
 		}
 
 		public function fitness() {
@@ -46,8 +68,10 @@
 // testes -------------
 // cria objeto distancias
 	$distancia = new Cidade;
+	$teste = new Rota;
 // mostra objeto distancia
-	print_r($distancia->getDistancias('A','B'));
+	// print_r($distancia->getDistancias('A','B'));
+	echo "<br>".$teste->sorteioRandomico();
 
 
 
