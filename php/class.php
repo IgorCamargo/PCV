@@ -22,56 +22,54 @@
 	}
 
 
-	class Cromossomo {
-			
-		public function randCromossomo() {
-			$de = 1;										// valor inicio
-			// $max = 27;
-			$ate = 4;										// valor fim
-
-			$cromossomo = range($de,$ate);					// cria o cromossomo base de 1 a 27
-
-			for ($i=0; $i<2; $i++) {						// cria 27 cromossomos aleatórios
-				shuffle( $cromossomo );						// embaralha
-				$cromossomoRota[$i] = $cromossomo;
-			}
-
-			for ($i=0; $i<2; $i++) {						// verifica se há cromossomos gêmeos
-				for ($y=0; $y<2; $y++) {
-
-					$comparacao = 0;
-
-					if ($i!=$y) {
-						$comparacao = array_diff_assoc($cromossomoRota[$i], $cromossomoRota[$y]);
-						// print_r($comparacao);
-						if ($comparacao == null) {
-							echo "tem igual<br>";
-						} else { echo "não tem igual<br>"; }
-					}
-				}
-			}
-
-			for ($i=0; $i<2; $i++) {
-				foreach( $cromossomoRota[$i] AS $cromoRota ) {
-					echo $cromoRota;
-				}
-				echo "<br>";
-			}
-			
-		}
-
-	}
-
 	class Rota {
 
 		public $cidades = array("A", "B", "C", "D");
 
 		public function populacao() {
 //gera cromossomos das cidades
+			$de = 1;											// valor inicio
+			// $max = 27;
+			$ate = 27;											// valor fim
+			$comparacao = 0;
+
+			$cromossomo = range($de,$ate);						// cria o cromossomo base de 1 a 27
+
+			do {
+				for ($i=0; $i<=27; $i++) {						// cria 27 cromossomos aleatórios
+					shuffle( $cromossomo );						// embaralha
+					$cromossomoRota[$i] = $cromossomo;
+				}
+
+				for ($i=0; $i<=27; $i++) {						// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
+					for ($y=0; $y<=27; $y++) {
+						if ($i!=$y) {
+// array_diff_assoc() - retorna o que há de diferente entre os indices dos arrays
+							$comparacao = array_diff_assoc($cromossomoRota[$i], $cromossomoRota[$y]);
+							// print_r($comparacao);
+							// if ($comparacao == null) {
+							// 	echo "tem igual<br>";
+							// } else { echo "não tem igual<br>"; }
+						}
+					}
+				}
+// enquanto $comparacao for nulo, é porque tem array iguais, gera cromossomos novamente
+			} while ($comparacao == null);
+
+// imprime os cromossomos
+			// for ($i=0; $i<=27; $i++) {
+			// 	foreach( $cromossomoRota[$i] AS $cromoRota ) {
+			// 		echo $cromoRota."-";
+			// 	}
+			// 	echo "<br>";
+			// }
+			return $cromossomoRota;
+			
 		}
 
 		public function fitness() {
 //selheciona os melhores cromossomos
+			return "teste";
 		}
 
 		public function reproducao() {
@@ -87,10 +85,14 @@
 // testes -------------
 // cria objeto distancias
 	$distancia = new Cidade;
-	$teste = new Cromossomo;
+	$teste = new Rota;
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('A','B'));
-	echo "<br>".$teste->randCromossomo();
+// objeto imprime os cromossomos
+	// echo "<br>".$teste->populacao();
+	// print_r($teste->populacao());
+// objeto imprime fitness
+	echo $teste->fitness();
 
 
 
