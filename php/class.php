@@ -44,7 +44,7 @@
 	}
 
 
-	class Rota {
+	class Rota extends Cidade {
 
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Veho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
 
@@ -97,29 +97,33 @@
 			for ($a=0; $a<=$qntCromossomo ; $a++) {			
 				$somaFitness[$a] = 0;
 			}
+			$cidades = $this->cidades;
 
 			for ($x=0; $x<=9; $x++) {
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
-					$somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
+					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
 
 // ============================================================================================================
 					$indPartida = $cromossomoParaFitness[$x][$y];
-					$indChegada = $cromossomoParaFitness[$x][$y+1];			// considerar a soma na ultima posiçao
+					$indChegada = $cromossomoParaFitness[$x][$y+1];			// considerar a soma na ultima posiçao - AJUSTAR
 
+					echo "<br>----------------------------------------------------<br>";
 					echo "partida ".$indPartida."<br>";
 					echo "chegada ".$indChegada."<br>";
 
 					for ($a=0; $a<=26; $a++) {
 						if ($indPartida-1 == $a) {		// indPartida=0 == a=0
 							$cidPartida = $cidades[$a]; 	// aracaju
+							echo "cid partida ".$cidPartida."<br>";
 						}
 						if ($indChegada-1 == $a) {		// indPartida=20 == a=20
 							$cidChegada = $cidades[$a]; 	// rio de janeiro
+							echo "cid chegada ".$cidChegada."<br>";
 						}
-						if (($cidPartida != null) && ($cidChegada != null)) {
-							$somaFitness[$x] = $somaFitness[$x] + $distancias[$cidPartida][$cidChegada];	// distancia entre aracaju - rio de janeiro
-						} else { return "erro"; }
+						// if (($cidPartida != null) && ($cidChegada != null)) {
+						// 	$somaFitness[$x] = $somaFitness[$x] + $distancias[$cidPartida][$cidChegada];	// distancia entre aracaju - rio de janeiro
+						// }
 
 						$cidPartida = null;
 						$cidChegada = null;
@@ -154,11 +158,13 @@
 	$rota = new Rota;
 
 // objeto imprime os cromossomos passando como parâmetro o tamanho da população
-	// echo "<br>".$rota->populacao(499);
+	// echo "<br>".$rota->populacao(9);
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
 	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	// print_r($populacao);
+	// echo "<br>";
 	print_r($rota->fitness($populacao, 9));
 
 // mostra objeto distancia
