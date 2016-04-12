@@ -29,11 +29,6 @@
 			'Sao Paulo'			=>	array('Aracaju' =>2187,	'Belem' =>2933,		'Belo Horizonte' =>586,			'Boa Vista' =>4756,		'Brasilia' =>1015,		'Campo Grande' =>1014,		'Cuiaba' =>1614,		'Curitiba' =>408,		'Florianopolis' =>705,		'Fortaleza' =>3127,		'Goiania' =>926,		'Joao Pessoa' =>2770,		'Maceio' =>2453,	'Manaus' =>3971,		'Natal' =>2947,		'Palmas' =>1776,		'Porto Alegre' =>1109,		'Porto Veho' =>3070,		'Recife' =>2660,	'Rio Branco' =>3604,		'Rio de Janeiro' =>429,			'Salvador' =>1962,		'Sao Luis' =>2970,		'Sao Paulo' =>0,		'Teresinha' =>2792,		'Vitoria' =>882),
 			'Teresinha'			=>	array('Aracaju' =>1142,	'Belem' =>947,		'Belo Horizonte' =>2302,		'Boa Vista' =>6052,		'Brasilia' =>1789,		'Campo Grande' =>2911,		'Cuiaba' =>2910,		'Curitiba' =>3143,		'Florianopolis' =>3450,		'Fortaleza' =>634,		'Goiania' =>1986,		'Joao Pessoa' =>1224,		'Maceio' =>1236,	'Manaus' =>5267,		'Natal' =>1171,		'Palmas' =>1401,		'Porto Alegre' =>3804,		'Porto Veho' =>4366,		'Recife' =>1137,	'Rio Branco' =>4900,		'Rio de Janeiro' =>2579,		'Salvador' =>1163,		'Sao Luis' =>446,		'Sao Paulo' =>2792,		'Teresinha' =>0,		'Vitoria' =>2171),
 			'Vitoria'			=>	array('Aracaju' =>1408,	'Belem' =>3108,		'Belo Horizonte' =>524,			'Boa Vista' =>5261,		'Brasilia' =>1239,		'Campo Grande' =>1892,		'Cuiaba' =>2119,		'Curitiba' =>1300,		'Florianopolis' =>1597,		'Fortaleza' =>2397,		'Goiania' =>1428,		'Joao Pessoa' =>2001,		'Maceio' =>1684,	'Manaus' =>4476,		'Natal' =>2178,		'Palmas' =>2214,		'Porto Alegre' =>2001,		'Porto Veho' =>3575,		'Recife' =>1831,	'Rio Branco' =>4109,		'Rio de Janeiro' =>521,			'Salvador' =>1202,		'Sao Luis' =>2607,		'Sao Paulo' =>882,		'Teresinha' =>2171,		'Vitoria' =>0),
-
-			// 'A'	=> array( 'A' => 0		,'B' => 12		,'C' => 20		,'D' => 30	),
-			// 'B'	=> array( 'A' => 12		,'B' => 0		,'C' => 50		,'D' => 25	),
-			// 'C'	=> array( 'A' => 20		,'B' => 50		,'C' => 0		,'D' => 10	),
-			// 'D'	=> array( 'A' => 30		,'B' => 25		,'C' => 10		,'D' => 0	),
 		);
 
 
