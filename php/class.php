@@ -103,7 +103,7 @@
 			$cidades = $this->cidades;			// array cidades
 			$distancias = $this->distancias;	// matriz distancias
 
-			for ($x=0; $x<=9; $x++) {
+			for ($x=0; $x<=$qntCromossomo; $x++) {
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
@@ -152,6 +152,10 @@
 				// echo "soma valores ".$somaFitness[$x];
 				// echo "<br>";
 				echo "<br>----------------- CICLO ---------------------------<br>";
+				$cidPartida = null;
+				$cidChegada = null;
+				$indCidPartida = null;
+				$indCidChegada = null;
 			}
 
 			return $somaFitness;
