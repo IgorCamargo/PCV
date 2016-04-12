@@ -1,4 +1,4 @@
-
+<!--  -->
 <?php
 	class Cidade {
 		
@@ -65,8 +65,11 @@
 			do {
 				for ($i=0; $i<=$qntCromossomo; $i++) {			// cria cromossomos aleatórios de acordo com a variável $qntCromossomo
 					shuffle( $cromossomo );						// embaralha o cromossomo de forma rândomica
-//************ trocar este trecho por uma função que verifica tamanho do array lenght( $cromossomo );
-					$cromossomo[26] = $cromossomo[0];			// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
+
+					if ($i==0) {
+						$last = $cromossomo[0];
+					}
+
 					$cromossomoRota[$i] = $cromossomo;			// $cromossomoRota recebe cromossomo embaralhado
 				}
 
@@ -78,19 +81,32 @@
 							$comparacao = array_diff_assoc($cromossomoRota[$i], $cromossomoRota[$y]);
 						}
 					}
+					// $cromossomo[26] = $cromossomo[0];
+					// $cromossomoRota[$i] = $cromossomo;
 				}
 			// enquanto $comparacao for nulo, é porque tem array igual, então gera cromossomos novamente
 			} while ($comparacao == null);
 
-			// imprime os cromossomos
+			
 			// for ($i=0; $i<=$qntCromossomo; $i++) {
-			// 	echo "cromossomo ".$x." -> ";
-			// 	foreach( $cromossomoRota[$i] AS $cromoRota ) {
-			// 		echo $cromoRota."-";
-			// 	}
-			// 	echo "<br>";$x++;
+			// 	$cromossomo[26] = $cromossomo[0];
+			// 	$cromossomoRota[$i] = $cromossomo;	
 			// }
-			return $cromossomoRota;
+
+			// echo count($cromossomo);
+
+			// imprime os cromossomos
+			for ($i=0; $i<=$qntCromossomo; $i++) {
+				echo "first cromo ".$cromossomoRota[$i][0];
+				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];		// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
+				echo " -> ".$cromossomoRota[$i][26]." <- ";
+				echo " cromossomo ".$x." -> ";
+				foreach( $cromossomoRota[$i] AS $cromoRota ) {
+					echo $cromoRota."-";
+				}
+				echo "<br>";$x++;
+			}
+			// return $cromossomoRota;
 		}
 
 //selheciona os melhores cromossomos
@@ -133,7 +149,7 @@
 	$rota = new Rota;
 
 // objeto imprime os cromossomos passando como parâmetro o tamanho da população
-	// echo "<br>".$rota->populacao(9);
+	echo "<br>".$rota->populacao(499);
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
@@ -141,7 +157,7 @@
 	// print_r($rota->fitness($distanciaCidade, 9));
 
 // mostra objeto distancia
-	print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
+	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
 
 
 ?>
