@@ -18,9 +18,9 @@
 			'Maceio'			=>	array('Aracaju' =>294,	'Belem' =>2173,		'Belo Horizonte' =>1854,		'Boa Vista' =>6279,		'Brasilia' =>1930,		'Campo Grande' =>3040,		'Cuiaba' =>3049,		'Curitiba' =>2871,		'Florianopolis' =>3168,		'Fortaleza' =>1075,		'Goiania' =>2125,		'Joao Pessoa' =>395,		'Maceio' =>0,		'Manaus' =>5491,		'Natal' =>572,		'Palmas' =>1851,		'Porto Alegre' =>3572,		'Porto Veho' =>4505,		'Recife' =>285,		'Rio Branco' =>5039,		'Rio de Janeiro' =>2131,		'Salvador' =>632,		'Sao Luis' =>1672,		'Sao Paulo' =>2453,		'Teresinha' =>1236,		'Vitoria' =>1684),
 			'Manaus'			=>	array('Aracaju' =>5215,	'Belem' =>5298,		'Belo Horizonte' =>3951,		'Boa Vista' =>785,		'Brasilia' =>3490,		'Campo Grande' =>3051,		'Cuiaba' =>2357,		'Curitiba' =>4036,		'Florianopolis' =>4443,		'Fortaleza' =>5763,		'Goiania' =>3291,		'Joao Pessoa' =>5808,		'Maceio' =>5491,	'Manaus' =>0,			'Natal' =>5985,		'Palmas' =>4141,		'Porto Alegre' =>4563,		'Porto Veho' =>901,			'Recife' =>5698,	'Rio Branco' =>1445,		'Rio de Janeiro' =>4374,		'Salvador' =>5009,		'Sao Luis' =>5335,		'Sao Paulo' =>3971,		'Teresinha' =>5267,		'Vitoria' =>4476),
 			'Natal'				=>	array('Aracaju' =>788,	'Belem' =>2108,		'Belo Horizonte' =>2348,		'Boa Vista' =>6770,		'Brasilia' =>2422,		'Campo Grande' =>3534,		'Cuiaba' =>3543,		'Curitiba' =>3365,		'Florianopolis' =>3662,		'Fortaleza' =>537,		'Goiania' =>2618,		'Joao Pessoa' =>185,		'Maceio' =>572,		'Manaus' =>5985,		'Natal' =>0,		'Palmas' =>2345,		'Porto Alegre' =>4066,		'Porto Veho' =>4998,		'Recife' =>297,		'Rio Branco' =>5533,		'Rio de Janeiro' =>2625,		'Salvador' =>1126,		'Sao Luis' =>1607,		'Sao Paulo' =>2947,		'Teresinha' =>1171,		'Vitoria' =>2178),
-			'Palmas'			=>	array('Aracaju' =>1662,	'Belem' =>1283,		'Belo Horizonte' =>1690,		'Boa Vista' =>4926,		'Brasilia' =>973,		'Campo Grande' =>1785,		'Cuiaba' =>1784,		'Curitiba' =>2036,		'Florianopolis' =>2336,		'Fortaleza' =>2035,		'Goiania' =>874,		'Joao Pessoa' =>2253,		'Maceio' =>1851,	'Manaus' =>4141,		'Natal' =>2345,		'Palmas' =>0,			'Porto Alegre' =>2747,		'Porto Veho' =>-,			'Recife' =>2058,	'Rio Branco' =>3764,		'Rio de Janeiro' =>3124,		'Salvador' =>1454,		'Sao Luis' =>1386,		'Sao Paulo' =>1776,		'Teresinha' =>1401,		'Vitoria' =>2214),
+			'Palmas'			=>	array('Aracaju' =>1662,	'Belem' =>1283,		'Belo Horizonte' =>1690,		'Boa Vista' =>4926,		'Brasilia' =>973,		'Campo Grande' =>1785,		'Cuiaba' =>1784,		'Curitiba' =>2036,		'Florianopolis' =>2336,		'Fortaleza' =>2035,		'Goiania' =>874,		'Joao Pessoa' =>2253,		'Maceio' =>1851,	'Manaus' =>4141,		'Natal' =>2345,		'Palmas' =>0,			'Porto Alegre' =>2747,		'Porto Veho' =>0/**/,		'Recife' =>2058,	'Rio Branco' =>3764,		'Rio de Janeiro' =>3124,		'Salvador' =>1454,		'Sao Luis' =>1386,		'Sao Paulo' =>1776,		'Teresinha' =>1401,		'Vitoria' =>2214),
 			'Porto Alegre'		=>	array('Aracaju' =>3296,	'Belem' =>3852,		'Belo Horizonte' =>1712,		'Boa Vista' =>5348,		'Brasilia' =>2027,		'Campo Grande' =>1518,		'Cuiaba' =>2206,		'Curitiba' =>711,		'Florianopolis' =>476,		'Fortaleza' =>4242,		'Goiania' =>1847,		'Joao Pessoa' =>3889,		'Maceio' =>3572,	'Manaus' =>4563,		'Natal' =>4066,		'Palmas' =>2747,		'Porto Alegre' =>0,			'Porto Veho' =>3662,		'Recife' =>3779,	'Rio Branco' =>4196,		'Rio de Janeiro' =>1553,		'Salvador' =>3090,		'Sao Luis' =>3891,		'Sao Paulo' =>1109,		'Teresinha' =>3804,		'Vitoria' =>2001),
-			'Porto Veho'		=>	array('Aracaju' =>4230,	'Belem' =>4397,		'Belo Horizonte' =>3050,		'Boa Vista' =>1686,		'Brasilia' =>2589,		'Campo Grande' =>2150,		'Cuiaba' =>1456,		'Curitiba' =>3135,		'Florianopolis' =>3442,		'Fortaleza' =>4862,		'Goiania' =>2390,		'Joao Pessoa' =>4822,		'Maceio' =>4505,	'Manaus' =>901,			'Natal' =>4998,		'Palmas' =>-,			'Porto Alegre' =>3662,		'Porto Veho' =>0,			'Recife' =>4712,	'Rio Branco' =>544,			'Rio de Janeiro' =>3473,		'Salvador' =>4023,		'Sao Luis' =>4434,		'Sao Paulo' =>3070,		'Teresinha' =>4366,		'Vitoria' =>3575),
+			'Porto Veho'		=>	array('Aracaju' =>4230,	'Belem' =>4397,		'Belo Horizonte' =>3050,		'Boa Vista' =>1686,		'Brasilia' =>2589,		'Campo Grande' =>2150,		'Cuiaba' =>1456,		'Curitiba' =>3135,		'Florianopolis' =>3442,		'Fortaleza' =>4862,		'Goiania' =>2390,		'Joao Pessoa' =>4822,		'Maceio' =>4505,	'Manaus' =>901,			'Natal' =>4998,		'Palmas' =>0/**/,		'Porto Alegre' =>3662,		'Porto Veho' =>0,			'Recife' =>4712,	'Rio Branco' =>544,			'Rio de Janeiro' =>3473,		'Salvador' =>4023,		'Sao Luis' =>4434,		'Sao Paulo' =>3070,		'Teresinha' =>4366,		'Vitoria' =>3575),
 			'Recife'			=>	array('Aracaju' =>501,	'Belem' =>2074,		'Belo Horizonte' =>2061,		'Boa Vista' =>6483,		'Brasilia' =>2135,		'Campo Grande' =>3247,		'Cuiaba' =>3255,		'Curitiba' =>3078,		'Florianopolis' =>3375,		'Fortaleza' =>800,		'Goiania' =>2332,		'Joao Pessoa' =>120,		'Maceio' =>285,		'Manaus' =>5698,		'Natal' =>297,		'Palmas' =>2058,		'Porto Alegre' =>3779,		'Porto Veho' =>4712,		'Recife' =>0,		'Rio Branco' =>5243,		'Rio de Janeiro' =>2338,		'Salvador' =>839,		'Sao Luis' =>1573,		'Sao Paulo' =>2660,		'Teresinha' =>1137,		'Vitoria' =>1831),
 			'Rio Branco'		=>	array('Aracaju' =>4763,	'Belem' =>4931,		'Belo Horizonte' =>3584,		'Boa Vista' =>2230,		'Brasilia' =>3123,		'Campo Grande' =>2684,		'Cuiaba' =>1990,		'Curitiba' =>3669,		'Florianopolis' =>3976,		'Fortaleza' =>5396,		'Goiania' =>2924,		'Joao Pessoa' =>5356,		'Maceio' =>5039,	'Manaus' =>1445,		'Natal' =>5533,		'Palmas' =>3764,		'Porto Alegre' =>4196,		'Porto Veho' =>544,			'Recife' =>5243,	'Rio Branco' =>0,			'Rio de Janeiro' =>4007,		'Salvador' =>4457,		'Sao Luis' =>4968,		'Sao Paulo' =>3604,		'Teresinha' =>4900,		'Vitoria' =>4109),
 			'Rio de Janeiro'	=>	array('Aracaju' =>1855,	'Belem' =>3250,		'Belo Horizonte' =>434,			'Boa Vista' =>5159,		'Brasilia' =>1148,		'Campo Grande' =>1444,		'Cuiaba' =>2017,		'Curitiba' =>852,		'Florianopolis' =>1144,		'Fortaleza' =>2805,		'Goiania' =>1338,		'Joao Pessoa' =>2448,		'Maceio' =>2131,	'Manaus' =>4374,		'Natal' =>2625,		'Palmas' =>2124,		'Porto Alegre' =>1553,		'Porto Veho' =>3473,		'Recife' =>2338,	'Rio Branco' =>4007,		'Rio de Janeiro' =>0,			'Salvador' =>1649,		'Sao Luis' =>3015,		'Sao Paulo' =>429,		'Teresinha' =>2579,		'Vitoria' =>521),
@@ -91,20 +91,44 @@
 
 //selheciona os melhores cromossomos
 		public function fitness($cromossomoParaFitness, $qntCromossomo) {
+			$cidPartida = null;
+			$cidChegada = null;
 		// inicializa o array com valores zero
 			for ($a=0; $a<=$qntCromossomo ; $a++) {			
 				$somaFitness[$a] = 0;
 			}
 
-			for ($i=0; $i<=9; $i++) {
+			for ($x=0; $x<=9; $x++) {
 				for ($y=0; $y<=26 ; $y++) { 
-					// echo $cromossomoParaFitness[$i][$y]."-";
-// ***** ajustar para comparar o valor no array como sendo o indice do array cidades
-// ***** alterar para somar valores das distancias da matriz distancias
-// ***** está somando os valores contido no arrya
-					$somaFitness[$i] = $somaFitness[$i]+$cromossomoParaFitness[$i][$y];
+					// echo $cromossomoParaFitness[$x][$y]."-";
+					$somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
+
+// ============================================================================================================
+					$indPartida = $cromossomoParaFitness[$x][$y];
+					$indChegada = $cromossomoParaFitness[$x][$y+1];			// considerar a soma na ultima posiçao
+
+					echo "partida ".$indPartida."<br>";
+					echo "chegada ".$indChegada."<br>";
+
+					for ($a=0; $a<=26; $a++) {
+						if ($indPartida-1 == $a) {		// indPartida=0 == a=0
+							$cidPartida = $cidades[$a]; 	// aracaju
+						}
+						if ($indChegada-1 == $a) {		// indPartida=20 == a=20
+							$cidChegada = $cidades[$a]; 	// rio de janeiro
+						}
+						if (($cidPartida != null) && ($cidChegada != null)) {
+							$somaFitness[$x] = $somaFitness[$x] + $distancias[$cidPartida][$cidChegada];	// distancia entre aracaju - rio de janeiro
+						} else { return "erro"; }
+
+						$cidPartida = null;
+						$cidChegada = null;
+
+					}
+// ============================================================================================================
+
 				}
-				// echo "soma valores ".$somaFitness[$i];
+				// echo "soma valores ".$somaFitness[$x];
 				// echo "<br>";
 			}
 
@@ -113,7 +137,8 @@
 
 //realiza o crossover dos cromossomos
 		public function reproducao() {
-
+			$t = $this->cidades;
+			return count($t);
 		}
 
 //realiza mutação dos cromossomos
@@ -133,11 +158,13 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	// $distanciaCidade = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
-	// print_r($rota->fitness($distanciaCidade, 9));
+	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	print_r($rota->fitness($populacao, 9));
 
 // mostra objeto distancia
-	print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
+	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
 
+//
+	// echo $rota->reproducao();
 
 ?>
