@@ -48,23 +48,21 @@
 
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Velho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
 
-//gera cromossomos das cidades
+		// gera cromossomos das cidades passando como parâmetro $qntCromossomo - quantidade de cromossomos a gerar
 		public function populacao($qntCromossomo) {
-		// $qntCromossomo - quantidade de cromossomos a gerar
 			$de = 1;											// valor inicio
 			$ate = 26;											// valor fim
 			$comparacao = 0;									// variável usada no teste de comparação
 			$x = 1;
 			$cromossomo = range($de,$ate);						// cria o array cromossomo de 1 a 26 (cidades a passar)
 
-			do {
+			do {												// entra em loop até gerar população de cromossomos (rotas) sem repetir
 				for ($i=0; $i<=$qntCromossomo; $i++) {			// cria cromossomos aleatórios de acordo com a variável $qntCromossomo
 					shuffle( $cromossomo );						// embaralha o cromossomo de forma rândomica
 					$cromossomoRota[$i] = $cromossomo;			// $cromossomoRota recebe cromossomo embaralhado
 				}
 
-				// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
-				for ($i=0; $i<=$qntCromossomo; $i++) {
+				for ($i=0; $i<=$qntCromossomo; $i++) {			// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
 					for ($y=0; $y<=$qntCromossomo; $y++) {
 						if ($i!=$y) {
 							// array_diff_assoc() - retorna o que há de diferente entre os indices dos arrays
@@ -72,13 +70,12 @@
 						}
 					}
 				}
-			// enquanto $comparacao for nulo, é porque tem array igual, então gera cromossomos novamente
-			} while ($comparacao == null);
+			} while ($comparacao == null);						// enquanto $comparacao for nulo, é porque tem array (cromossomo) iguais, então gera cromossomos novamente
 
-			// imprime os cromossomos
-			for ($i=0; $i<=$qntCromossomo; $i++) {
+			for ($i=0; $i<=$qntCromossomo; $i++) {				// imprime os cromossomos
 				// echo "first cromo ".$cromossomoRota[$i][0];
-				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];		// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
+				// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
+				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
 				// echo " cromossomo ".$x." -> ";
 				// foreach( $cromossomoRota[$i] AS $cromoRota ) {
@@ -86,68 +83,60 @@
 				// }
 				// echo "<br>";$x++;
 			}
-			return $cromossomoRota;
+			return $cromossomoRota;								// retorna matriz de cromossomos - rotas - gerados
 		}
 
-//selheciona os melhores cromossomos
+		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
 		public function fitness($cromossomoParaFitness, $qntCromossomo) {
-			$cidPartida = null;
-			$cidChegada = null;
-			$indCidPartida = null;
-			$indCidChegada = null;
-		// inicializa o array com valores zero
-			for ($a=0; $a<=$qntCromossomo ; $a++) {			
-				$somaFitness[$a] = 0;
-			}
+			// inicializa as variáveis
+			$cidPartida = null;									// cidade partida
+			$cidChegada = null;									// cidade chegada
+			$indCidPartida = null;								// indice da cidade partida
+			$indCidChegada = null;								// indice da cidade partida
 			
-			$cidades = $this->cidades;			// array cidades
-			$distancias = $this->distancias;	// matriz distancias
+			$cidades = $this->cidades;							// armazena o objeto array cidades que extende da classe Cidade
+			$distancias = $this->distancias;					// armazena o objeto matriz distancias que extende da classe Cidade
+
+			for ($a=0; $a<=$qntCromossomo ; $a++) {				// inicializa o array com valores zero
+				$somaFitness[$a] = 0;							// $somaFitness é o array que vai receber a soma das rotas para avaliação
+			}
 
 			for ($x=0; $x<=$qntCromossomo; $x++) {
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
-
-// ============================================================================================================
-					
-					if ($y+1<=26) {
-
+					if ($y+1<=26) {								// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
 						$indPartida = $cromossomoParaFitness[$x][$y];
-						$indChegada = $cromossomoParaFitness[$x][$y+1];			// considerar a soma na ultima posiçao
-
+						$indChegada = $cromossomoParaFitness[$x][$y+1];
 						echo "<br>----------------------------------------------------<br>";
 						// echo "partida ".$indPartida."<br>";
 						// echo "chegada ".$indChegada."<br>";
-
 						// $somaFitness[$x] = $somaFitness[$x]+1;
-
 					}
-
 
 					for ($a=0; $a<=26; $a++) {
-						if ($indPartida-1 == $a) {		// indPartida=0 == a=0
-							$cidPartida = $cidades[$a]; 	// aracaju
+						if ($indPartida-1 == $a) {				// identifica o indice da cidade atual verificada na rota
+							$cidPartida = $cidades[$a];
 							// echo "cid partida ".$cidPartida."<br>";
-							$indCidPartida = $cidPartida;
+							$indCidPartida = $cidPartida;		// $indCidPartida recebe o indice da cidade atual
 						}
 
-						if ($indChegada-1 == $a) {		// indPartida=20 == a=20
-							$cidChegada = $cidades[$a]; 	// rio de janeiro
+						if ($indChegada-1 == $a) {				// identifica o indice da próxima cidade verificada na rota
+							$cidChegada = $cidades[$a];
 							// echo "cid chegada ".$cidChegada."<br>";
-							$indCidChegada = $cidChegada;
+							$indCidChegada = $cidChegada;		// $indCidPartida recebe o indice da próxima cidade
 						}
 
+						// verifica se existe a cidade atual e a próxima cidade e se a próxima cidade existe no array
 						if (($indCidPartida != null) && ($indCidChegada != null) && ($y+1<=26)) {
-							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];	// distancia entre aracaju - rio de janeiro
+							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
+							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];
 							echo "Distancia entre ".$cidPartida." e ".$cidChegada." = ".$distancias[$indCidPartida][$indCidChegada]."<br>";
-							
+							// reseta as variáveis para não armazena "lixo"
 							$indCidPartida = null;
 							$indCidChegada = null;
-
 						}
 					}
-// ============================================================================================================
-
 				}
 				// echo "soma valores ".$somaFitness[$x];
 				// echo "<br>";
@@ -157,17 +146,18 @@
 				$indCidPartida = null;
 				$indCidChegada = null;
 			}
-
 			return $somaFitness;
 		}
 
-//realiza o crossover dos cromossomos
+
+// realiza o crossover dos cromossomos
 		public function reproducao() {
 			$t = $this->cidades;
 			return count($t);
 		}
 
-//realiza mutação dos cromossomos
+
+// realiza mutação dos cromossomos
 		public function mutacao() {
 
 		}
