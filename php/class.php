@@ -4,7 +4,7 @@
 		
 		public $distancias = array(
 			'Aracaju'			=>	array('Aracaju' =>0,	'Belem' =>2079,		'Belo Horizonte' =>1578,		'Boa Vista' =>6000,		'Brasilia' =>1652,		'Campo Grande' =>2765,		'Cuiaba' =>2775,		'Curitiba' =>2595,		'Florianopolis' =>2892,		'Fortaleza' =>1183,		'Goiania' =>1848,		'Joao Pessoa' =>611,		'Maceio' =>294,		'Manaus' =>5215,		'Natal' =>788,		'Palmas' =>1662,		'Porto Alegre' =>3296,		'Porto Velho' =>4230,		'Recife' =>501,		'Rio Branco' =>4763,		'Rio de Janeiro' =>1855,		'Salvador' =>356,		'Sao Luis' =>1578,		'Sao Paulo' =>2187,		'Teresinha' =>1142,		'Vitoria' =>1408),
-			'Belem'				=>	array('Aracaju' =>2079,	'Belem' =>0,		'Belo Horizonte' =>2824,		'Boa Vista' =>6083,		'Brasilia' =>2120,		'Campo Grande' =>2942,		'Cuiaba' =>2941,		'Curitiba' =>3193,		'Florianopolis' =>3500,		'Fortaleza' =>1610,		'Goiania' =>2017,		'Joao Pessoa' =>2161,		'Maceio' =>2173,	'Manaus' =>5.298,		'Natal' =>2108,		'Palmas' =>1283,		'Porto Alegre' =>3852,		'Porto Velho' =>4397,		'Recife' =>2074,	'Rio Branco' =>4931,		'Rio de Janeiro' =>3250,		'Salvador' =>2100,		'Sao Luis' =>806,		'Sao Paulo' =>2933,		'Teresinha' =>947,		'Vitoria' =>3108),
+			'Belem'				=>	array('Aracaju' =>2079,	'Belem' =>0,		'Belo Horizonte' =>2824,		'Boa Vista' =>6083,		'Brasilia' =>2120,		'Campo Grande' =>2942,		'Cuiaba' =>2941,		'Curitiba' =>3193,		'Florianopolis' =>3500,		'Fortaleza' =>1610,		'Goiania' =>2017,		'Joao Pessoa' =>2161,		'Maceio' =>2173,	'Manaus' =>5298,		'Natal' =>2108,		'Palmas' =>1283,		'Porto Alegre' =>3852,		'Porto Velho' =>4397,		'Recife' =>2074,	'Rio Branco' =>4931,		'Rio de Janeiro' =>3250,		'Salvador' =>2100,		'Sao Luis' =>806,		'Sao Paulo' =>2933,		'Teresinha' =>947,		'Vitoria' =>3108),
 			'Belo Horizonte'	=>	array('Aracaju' =>1578,	'Belem' =>2824,		'Belo Horizonte' =>0,			'Boa Vista' =>4736,		'Brasilia' =>716,		'Campo Grande' =>1453,		'Cuiaba' =>1594,		'Curitiba' =>1004,		'Florianopolis' =>1301,		'Fortaleza' =>2528,		'Goiania' =>906,		'Joao Pessoa' =>2171,		'Maceio' =>1854,	'Manaus' =>3951,		'Natal' =>2348,		'Palmas' =>1690,		'Porto Alegre' =>1712,		'Porto Velho' =>3050,		'Recife' =>2061,	'Rio Branco' =>3584,		'Rio de Janeiro' =>434,			'Salvador' =>1372,		'Sao Luis' =>2738,		'Sao Paulo' =>586,		'Teresinha' =>2302,		'Vitoria' =>524),
 			'Boa Vista'			=>	array('Aracaju' =>6000,	'Belem' =>6083,		'Belo Horizonte' =>4736,		'Boa Vista' =>0,		'Brasilia' =>4275,		'Campo Grande' =>3836,		'Cuiaba' =>3142,		'Curitiba' =>4821,		'Florianopolis' =>5128,		'Fortaleza' =>6548,		'Goiania' =>4076,		'Joao Pessoa' =>6593,		'Maceio' =>6279,	'Manaus' =>785,			'Natal' =>6770,		'Palmas' =>4926,		'Porto Alegre' =>5348,		'Porto Velho' =>1686,		'Recife' =>6483,	'Rio Branco' =>2230,		'Rio de Janeiro' =>5159,		'Salvador' =>5794,		'Sao Luis' =>6120,		'Sao Paulo' =>4756,		'Teresinha' =>6052,		'Vitoria' =>5261),
 			'Brasilia'			=>	array('Aracaju' =>1652,	'Belem' =>2120,		'Belo Horizonte' =>716,			'Boa Vista' =>4275,		'Brasilia' =>0,			'Campo Grande' =>1134,		'Cuiaba' =>1133,		'Curitiba' =>1366,		'Florianopolis' =>1673,		'Fortaleza' =>2200,		'Goiania' =>209,		'Joao Pessoa' =>2245,		'Maceio' =>1930,	'Manaus' =>3490,		'Natal' =>2422,		'Palmas' =>973,			'Porto Alegre' =>2027,		'Porto Velho' =>2589,		'Recife' =>2135,	'Rio Branco' =>3123,		'Rio de Janeiro' =>1148,		'Salvador' =>1446,		'Sao Luis' =>2157,		'Sao Paulo' =>1015,		'Teresinha' =>1789,		'Vitoria' =>1239),
@@ -93,6 +93,7 @@
 			$cidChegada = null;									// cidade chegada
 			$indCidPartida = null;								// indice da cidade partida
 			$indCidChegada = null;								// indice da cidade partida
+			$contador = 0;
 			
 			$cidades = $this->cidades;							// armazena o objeto array cidades que extende da classe Cidade
 			$distancias = $this->distancias;					// armazena o objeto matriz distancias que extende da classe Cidade
@@ -102,6 +103,7 @@
 			}
 
 			for ($x=0; $x<=$qntCromossomo; $x++) {
+				echo "<br>----------------- ROTA ".$contador." ---------------------------<br>";
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
@@ -132,7 +134,7 @@
 							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
 							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];
 							echo "Distancia entre ".$cidPartida." e ".$cidChegada." = ".$distancias[$indCidPartida][$indCidChegada]."<br>";
-							// reseta as variáveis para não armazena "lixo"
+							// reset nas variáveis para não armazena "lixo"
 							$indCidPartida = null;
 							$indCidChegada = null;
 						}
@@ -140,13 +142,21 @@
 				}
 				// echo "soma valores ".$somaFitness[$x];
 				// echo "<br>";
-				echo "<br>----------------- CICLO ---------------------------<br>";
+				$contador++;
 				$cidPartida = null;
 				$cidChegada = null;
 				$indCidPartida = null;
 				$indCidChegada = null;
 			}
-			return $somaFitness;
+			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
+			// return $somaFitness;								// retorna a lista do fitness dos cromossomos - rotas - onde o indice representa o cromossomo
+			print_r($somaFitness);
+			$result = array_keys($somaFitness);
+			echo "<br> chaves - ";
+
+			print_r($result);
+			echo "<br>Melhor rota é a rota ".$result[0]." com ditancia percorrida = ".$somaFitness[$result[0]]."km";
+			
 		}
 
 
@@ -177,7 +187,8 @@
 	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
 	// print_r($populacao);
 	// echo "<br>";
-	print_r($rota->fitness($populacao, 9));
+	// print_r($rota->fitness($populacao, 999));
+	$rota->fitness($populacao, 9);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
