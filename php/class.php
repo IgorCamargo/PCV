@@ -150,13 +150,24 @@
 			}
 			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			// return $somaFitness;								// retorna a lista do fitness dos cromossomos - rotas - onde o indice representa o cromossomo
-			print_r($somaFitness);
+			// print_r($somaFitness);
 			$result = array_keys($somaFitness);
-			echo "<br> chaves - ";
+			// echo "<br> chaves - ";
 
-			print_r($result);
+			// print_r($result);
+
+			$this->selecao($somaFitness, $result);
+
 			echo "<br>Melhor rota é a rota ".$result[0]." com ditancia percorrida = ".$somaFitness[$result[0]]."km";
 			
+		}
+
+// armazena array com as melhores rotas e um array com os indices dessas melhores rotas
+		private function selecao($cromossomo, $indCromossomo) {
+			echo "<br>Rotas ordenadas<br>";
+			print_r($cromossomo);
+			echo "<br>";
+			print_r($indCromossomo);
 		}
 
 
