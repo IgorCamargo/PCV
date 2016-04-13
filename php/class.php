@@ -103,14 +103,14 @@
 			}
 
 			for ($x=0; $x<=$qntCromossomo; $x++) {
-				echo "<br>----------------- ROTA ".$contador." ---------------------------<br>";
+// para conferência // echo "<br>----------------- ROTA ".$contador." ---------------------------<br>";
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
 					if ($y+1<=26) {								// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
 						$indPartida = $cromossomoParaFitness[$x][$y];
 						$indChegada = $cromossomoParaFitness[$x][$y+1];
-						echo "<br>----------------------------------------------------<br>";
+// para conferência // echo "<br>----------------------------------------------------<br>";
 						// echo "partida ".$indPartida."<br>";
 						// echo "chegada ".$indChegada."<br>";
 						// $somaFitness[$x] = $somaFitness[$x]+1;
@@ -133,15 +133,14 @@
 						if (($indCidPartida != null) && ($indCidChegada != null) && ($y+1<=26)) {
 							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
 							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];
-							echo "Distancia entre ".$cidPartida." e ".$cidChegada." = ".$distancias[$indCidPartida][$indCidChegada]."<br>";
+// para conferência // echo "Distancia entre ".$cidPartida." e ".$cidChegada." = ".$distancias[$indCidPartida][$indCidChegada]."<br>";
 							// reset nas variáveis para não armazena "lixo"
 							$indCidPartida = null;
 							$indCidChegada = null;
 						}
 					}
 				}
-				// echo "soma valores ".$somaFitness[$x];
-				// echo "<br>";
+				// reseta as variáveis para não armazenar "lixo"
 				$contador++;
 				$cidPartida = null;
 				$cidChegada = null;
@@ -149,18 +148,13 @@
 				$indCidChegada = null;
 			}
 			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
-			// return $somaFitness;								// retorna a lista do fitness dos cromossomos - rotas - onde o indice representa o cromossomo
-			// print_r($somaFitness);
-			$result = array_keys($somaFitness);
-			// echo "<br> chaves - ";
+			$chavesFitness = array_keys($somaFitness);			// $chavesFitness recebe os indices do array $somaFitness como valores
 
-			// print_r($result);
+			$this->selecao($somaFitness, $chavesFitness);		// passa para o método selecao o fitness
 
-			$this->selecao($somaFitness, $result);
-
-			echo "<br>Melhor rota é a rota ".$result[0]." com ditancia percorrida = ".$somaFitness[$result[0]]."km";
-			
+			echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
 		}
+
 
 // armazena array com as melhores rotas e um array com os indices dessas melhores rotas
 		private function selecao($cromossomo, $indCromossomo) {
