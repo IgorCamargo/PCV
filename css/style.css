@@ -17,6 +17,13 @@ html {
 	font-family: 'Dosis', sans-serif;
 }
 
+header {
+	position: relative;
+	font-size: 2em;
+	margin-top: 0.1em;
+	text-align: center;
+}
+
 .select-map {
 	position: relative;
 	margin-top: 10em;
@@ -26,12 +33,13 @@ html {
 .select-map h2 {
 	margin: 0.3em 0 0.3em 0;
 	font-size: 1.5em;
+	letter-spacing: 0.1em;
 	color: #fff;
 }
 
 .select-map select {
 	position: relative;
-	width: 25em;
+	width: 24em;
 	height: 2em;
 	font-size: 1.3em;
 	padding-left: 1em;
@@ -43,7 +51,7 @@ html {
 	color: #fff;
 	background-color: #111;
 	font-size: 1.25em;
-	width: 26em;
+	width: 25em;
 	height: 2em;
 	margin: 1.5em auto;
 	webkit-transition: background-color 0.2s;
@@ -62,4 +70,33 @@ html {
 	background-color: #111;
 	webkit-transition: background-color 0.4s;
 	transition: background-color 0.4s;
+}
+
+@media screen and (max-width: 512px) {
+	.select-map select {
+		width: 100%;
+	}
+	.btnGerar {
+		width: 100%;
+	}
+}
+
+@media screen and (max-height: 560px) {
+	.select-map {
+		margin-top: 5em;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.select-map {
+		margin-top: 2em;
+	}
+	.select-map h2 {
+		margin: 0.1em 0 0.1em 0;
+		font-size: 1.3em;
+		letter-spacing: 0;
+	}
+	.btnGerar {
+		margin: 1em auto;
+	}
 }
