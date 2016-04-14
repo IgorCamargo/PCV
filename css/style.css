@@ -12,30 +12,54 @@
 }
 
 html {
-	position: fixed;
 	background: url("mapa.jpg") no-repeat fixed;
 	background-size: 100% 100%;
-}
-
-h2 {
-	margin: 0.3em 0 0.3em 0;
-	font-size: 1.5em;
-}
-
-div {
-	position: relative;
-	width: 800px;
+	font-family: 'Dosis', sans-serif;
 }
 
 .select-map {
 	position: relative;
-	width: 25.3em;
-	margin: 0 auto;
+	margin-top: 10em;
 	text-align: center;
+}
+
+.select-map h2 {
+	margin: 0.3em 0 0.3em 0;
+	font-size: 1.5em;
+	color: #fff;
 }
 
 .select-map select {
 	position: relative;
-	width: 100%;
+	width: 25em;
 	height: 2em;
+	font-size: 1.3em;
+	padding-left: 1em;
+}
+
+.btnGerar {
+	position: relative;
+	display: block;
+	color: #fff;
+	background-color: #111;
+	font-size: 1.25em;
+	width: 26em;
+	height: 2em;
+	margin: 1.5em auto;
+	webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+.btnGerar:hover {
+	color: #111;
+	background-color: #eee;
+	webkit-transition: background-color 0.8s;
+	transition: background-color 0.8s;
+}
+
+.btnGerar:active {
+	color: #fff;
+	background-color: #111;
+	webkit-transition: background-color 0.4s;
+	transition: background-color 0.4s;
 }
