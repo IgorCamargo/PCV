@@ -55,7 +55,6 @@ html {
 .roSelect-map {
 	position: relative;
 	margin: 1em auto;
-	text-align: left;
 	width: 63.8em;
 }
 .roH2 {
@@ -101,14 +100,14 @@ html {
 
 
 .roBtnGerar {
-	display: inline;
+	position: absolute;
 	color: #fff;
 	background-color: #111;
 	padding: 0.1em;
 	font-size: 1em;
 	width: 8em;
 	height: 2em;
-	margin-left: 5em;
+	right: 0;
 	webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;
 }
@@ -135,8 +134,64 @@ html {
 	filter: alpha(opacity=60);
 }
 
+@media screen and (max-width: 1080px) {
+	.roSelect-map {
+		position: relative;
+		width: 40.8em;
+	}
+	.roH2 {
+		margin: 0.3em;
+		font-size: 1.3em;
+		width: 14.5em;
+		display: inline-block;
+	}
+	.roSelect {
+		width: 10em;
+	}
+	.roBtnGerar {
+		margin-top: -1.88em;
+		padding: 0.1em;
+		font-size: 1em;
+		width: 8em;
+		height: 4em;
+	}
+}
+
+@media screen and (max-width: 675px) {
+	.roHeader {
+		text-align: center;
+		margin-left: 0;
+	}
+	.roSelect-map {
+		position: relative;
+		width: 99%;
+		display: block;
+		text-align: center;
+	}
+	.roH2 {
+		margin: 0.3em 0 0.3em 0;
+		font-size: 1.3em;
+		display: block;
+		width: 99%;
+	}
+	.roSelect {
+		width: 99%;
+	}
+	.roBtnGerar {
+		position: relative;
+		margin-top: 1em;
+		padding: 0.1em;
+		font-size: 1em;
+		width: 99%;
+		height: 2.5em;
+	}
+}
+
 @media screen and (max-width: 512px) {
-	.inSelect-map select {
+	.inSelect-map  {
+		height: 30em;
+	}
+	.inSelect {
 		width: 100%;
 	}
 	.inBtnGerar {
@@ -154,7 +209,7 @@ html {
 	.inSelect-map {
 		margin-top: 2em;
 	}
-	.inSelect-map h2 {
+	.inH2 {
 		margin: 0.1em 0 0.1em 0;
 		font-size: 1.3em;
 		letter-spacing: 0;
