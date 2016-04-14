@@ -17,27 +17,33 @@ html {
 	font-family: 'Dosis', sans-serif;
 }
 
-header {
+.inHeader {
 	position: relative;
 	font-size: 2em;
 	margin-top: 0.1em;
 	text-align: center;
 }
 
-.select-map {
+
+.roHeader {
+	font-size: 1.5em;
+	text-align: left;
+	margin-left: 0.5em;
+}
+
+
+.inSelect-map {
 	position: relative;
 	margin-top: 10em;
 	text-align: center;
 }
-
-.select-map h2 {
+.inH2 {
 	margin: 0.3em 0 0.3em 0;
 	font-size: 1.5em;
 	letter-spacing: 0.1em;
 	color: #fff;
 }
-
-.select-map select {
+.inSelect {
 	position: relative;
 	width: 24em;
 	height: 2em;
@@ -45,7 +51,30 @@ header {
 	padding-left: 1em;
 }
 
-.btnGerar {
+
+.roSelect-map {
+	position: relative;
+	margin: 1em auto;
+	text-align: left;
+	width: 67.5em;
+}
+.roH2 {
+	margin: 0.3em 0 0.3em 0.3em;
+	font-size: 1.3em;
+	letter-spacing: 0em;
+	width: 14.5em;
+	display: inline;
+	color: #fff;
+}
+.roSelect {
+	width: 10em;
+	height: 1.5em;
+	font-size: 1em;
+	padding: 0.1em 0 0.1em 1em;
+}
+
+
+.inBtnGerar {
 	position: relative;
 	display: block;
 	color: #fff;
@@ -57,46 +86,80 @@ header {
 	webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;
 }
-
-.btnGerar:hover {
+.inBtnGerar:hover {
 	color: #111;
 	background-color: #eee;
 	webkit-transition: background-color 0.8s;
 	transition: background-color 0.8s;
 }
-
-.btnGerar:active {
+.inBtnGerar:active {
 	color: #fff;
 	background-color: #111;
 	webkit-transition: background-color 0.4s;
 	transition: background-color 0.4s;
 }
 
+
+.roBtnGerar {
+	display: inline;
+	color: #fff;
+	background-color: #111;
+	padding: 0.1em;
+	font-size: 1em;
+	width: 8em;
+	height: 2em;
+	margin-left: 5em;
+	webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+.roBtnGerar:hover {
+	color: #111;
+	background-color: #eee;
+	webkit-transition: background-color 0.8s;
+	transition: background-color 0.8s;
+}
+.roBtnGerar:active {
+	color: #fff;
+	background-color: #111;
+	webkit-transition: background-color 0.4s;
+	transition: background-color 0.4s;
+}
+
+.resultado {
+	position: relative;
+	margin: 2em auto;
+	width: 90%;
+	height: 35em;
+	background-color: #fff;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
 @media screen and (max-width: 512px) {
-	.select-map select {
+	.inSelect-map select {
 		width: 100%;
 	}
-	.btnGerar {
+	.inBtnGerar {
 		width: 100%;
 	}
 }
 
 @media screen and (max-height: 560px) {
-	.select-map {
+	.inSelect-map {
 		margin-top: 5em;
 	}
 }
 
 @media screen and (max-width: 480px) {
-	.select-map {
+	.inSelect-map {
 		margin-top: 2em;
 	}
-	.select-map h2 {
+	.inSelect-map h2 {
 		margin: 0.1em 0 0.1em 0;
 		font-size: 1.3em;
 		letter-spacing: 0;
 	}
-	.btnGerar {
+	.inBtnGerar {
 		margin: 1em auto;
 	}
 }
