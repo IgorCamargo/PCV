@@ -2,34 +2,51 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
 	<title>PCV - Problema do Caixeiro Viajante</title>
 
-	<style type="text/css">
-	.a {
-		position: relative;
-		width: 800px;
-		margin: 150px auto;
-		text-align: left;
-		font-size: 20px;
-	}
-	</style>
+	<link rel="shortcut icon" href="css/marcador.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-	<div class="a">
-		== Em relação a Algoritmos Genéticos:<br>
-		- Qual o motivo desses algoritmos terem esse nome "Genéticos"?<br>
-		Porque são baseados na teoria da evolução, onde o mais forte sobrevive, a partir da adaptação ao meio em que vive.<br>
-		- O que são os cromossomos nesses algoritmos?<br>
-		É o código genético de cada indivíduo; Cada número do cromossomo representa um código de uma cidade num grafo, por exemplo.<br>
-		- O que faz a função 'fitness' no algorimo?<br>
-		Avalia cada estado verificando qual está mais próximo do objetivo.<br>
-		- O que faz o 'crossover' no algorimo?<br>
-		Combina as informações de dois cromossomos pais para gerar dois cromossomos filhos, sejam os filhos melhores ou piores.<br>
-		- O que faz a 'mutação' no algoritmo?<br>
-		Altera aleatoriamente o código genético do cromossomo em determinados momentos para aumentar a variedade da população, porém não pode ser muito usado, pois assim leva à uma busca totalmente aleatória.<br>
-		...
-	</div>
+<section>
+	<article class="">
+		<h2>Selecione a cidade de partida</h2>
+		<select>
+			<option value="">...</option>
+			<option value="Aracaju">Aracaju</option>
+			<option value="Belem">Belém</option>
+			<option value="Belo Horizonte">Belo Horizonte</option>
+			<option value="Boa Vista">Boa Vista</option>
+			<option value="Brasilia">Brasília</option>
+			<option value="Campo Grande">Campo Grande</option>
+			<option value="Cuiaba">Cuiaba</option>
+			<option value="Curitiba">Curitiba</option>
+			<option value="Florianopolis">Florianópolis</option>
+			<option value="Fortaleza">Fortaleza</option>
+			<option value="Goiania">Goiânia</option>
+			<option value="Joao Pessoa">João Pessoa</option>
+			<option value="Maceio">Maceió</option>
+			<option value="Manaus">Manaus</option>
+			<option value="Natal">Natal</option>
+			<option value="Palmas">Palmas</option>
+			<option value="Porto Alegre">Porto Alegre</option>
+			<option value="Porto Velho">Porto Velho</option>
+			<option value="Recife">Recife</option>
+			<option value="Rio Branco">Rio Branco</option>
+			<option value="Rio de Janeiro">Rio de Janeiro</option>
+			<option value="Salvador">Salvador</option>
+			<option value="Sao Luis">São Luís</option>
+			<option value="Sao Paulo">São Paulo</option>
+			<option value="Teresinha">Teresinha</option>
+			<option value="Vitoria">Vitória</option>
+		</select>
+		<h2>Escolha a quantia de rotas para avaliar</h2>
+
+	</article>
+</section>
 
 </body>
 </html>

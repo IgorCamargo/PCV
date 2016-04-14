@@ -1,0 +1,5 @@
+html {
+	position: fixed;
+	background: url("mapa.jpg") no-repeat fixed;
+	background-size: 100% 100%;
+}
