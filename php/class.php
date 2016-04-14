@@ -77,11 +77,11 @@
 				// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
 				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
-				// echo " cromossomo ".$x." -> ";
-				// foreach( $cromossomoRota[$i] AS $cromoRota ) {
-					// echo $cromoRota."-";
-				// }
-				// echo "<br>";$x++;
+				echo " cromossomo ".$x." -> ";
+				foreach( $cromossomoRota[$i] AS $cromoRota ) {
+					echo $cromoRota."-";
+				}
+				echo "<br>";$x++;
 			}
 			return $cromossomoRota;								// retorna matriz de cromossomos - rotas - gerados
 		}
@@ -150,18 +150,24 @@
 			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);			// $chavesFitness recebe os indices do array $somaFitness como valores
 
-			$this->selecao($somaFitness, $chavesFitness);		// passa para o método selecao o fitness
+			$this->selecao($somaFitness, $chavesFitness, $cromossomoParaFitness);		// passa para o método selecao o fitness
 
 			echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
 		}
 
 
 // armazena array com as melhores rotas e um array com os indices dessas melhores rotas
-		private function selecao($cromossomo, $indCromossomo) {
+		private function selecao($cromossomo, $indCromossomo, $cromossomosRotas) {
 			echo "<br>Rotas ordenadas<br>";
 			print_r($cromossomo);
 			echo "<br>";
 			print_r($indCromossomo);
+			echo "<br>rota melhor: <br>";
+			
+			for ($y=0; $y <= 26 ; $y++) { 
+				echo $cromossomosRotas[$indCromossomo[0]-1][$y]." - ";
+			}
+
 		}
 
 
