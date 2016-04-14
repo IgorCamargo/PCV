@@ -10,11 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
-<section>
-	<article class="">
+<div>
+<section class="select-map">
+	<article>
 		<h2>Selecione a cidade de partida</h2>
-		<select>
+		<select autofocus required>
 			<option value="">...</option>
 			<option value="Aracaju">Aracaju</option>
 			<option value="Belem">Belém</option>
@@ -43,10 +43,17 @@
 			<option value="Teresinha">Teresinha</option>
 			<option value="Vitoria">Vitória</option>
 		</select>
+
 		<h2>Escolha a quantia de rotas para avaliar</h2>
+		<select required>
+			<option value="">...</option>
+			<option value="400">400</option>
+			<option value="800">800</option>
+			<option value="1000">1000</option>
+		</select>
 
 	</article>
 </section>
-
+</div>
 </body>
 </html>
