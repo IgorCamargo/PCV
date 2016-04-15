@@ -167,13 +167,13 @@
 			for ($y=0; $y <= $tamPop; $y++) {							// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
 					$cromossomoFilho[$y][$i] = $cromossomosRotas[$y][$i];
-					echo $cromossomoFilho[$y][$i]."-";
+					// echo $cromossomoFilho[$y][$i]."-";
 				}
-				echo "<br>";
+				// echo "<br>";
 				// print_r($cromossomoFilho[$y]);
 			}
 
-			$this->selecao($somaFitness, $chavesFitness, $cromossomoParaFitness, $tamPop);		// passa os cromossomos pai e filho para reprodução
+			$this->reproducao($cromossomosRotas, $cromossomoFilho, $tamPop);		// passa os cromossomos pai e filho para reprodução
 
 		}
 
@@ -186,20 +186,23 @@
 
 				$elementoFirst[$i] = $cromossomosFilho[$i][0];					// recebe o primeiro/ultimo elemento
 
-				for ($y=1; $y <= 25 ; $y++) { 									// gera filho do cromossomo
-					$filho[$i] = $cromossomosFilho[$i][$y];
-				}
+				for ($y=1; $y <= 25 ; $y++) { 									// gera filho/cópia do cromossomo
+					$filho[$i][$y] = $cromossomosFilho[$i][$y];
+					// echo $filho[$i][$y]."-";
+				}//echo "<br>";
 
-				sort($filho);													// ordena miolo filho
+				sort($filho[$i]);												// ordena o filho
 
 				for ($y=1; $y <= 12; $y++) { 									// metade filhoA de 1 a 12
-					$filhoA[$i] = $cromossomosFilho[$i][$y];
-				}
-				for ($y=13; $y <= 25; $y++) { 									// metade filhoB de 13 a 25
-					$filhoB[$i] = $cromossomosFilho[$i][$y];
-				}
-// fazer agora filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1]
+					$filhoA[$i][$y] = $filho[$i][$y];
+					echo $filhoA[$i][$y]."-";
+				} echo "<br>";
+				for ($y=13; $y <= 24; $y++) { 									// metade filhoB de 13 a 24
+					$filhoB[$i][$y] = $filho[$i][$y];
+					echo $filhoB[$i][$y]."-";
+				} echo "<br>";
 			}
+// fazer agora filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1]
 
 		}
 
