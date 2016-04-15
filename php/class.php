@@ -180,7 +180,7 @@
 // ERRO AQUI ???
 
 // realiza o crossover dos cromossomos
-		private function reproducao($cromossomosPai, $cromossomosFilho, $tamPop) {
+		private function reproducao($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
 			
 			for ($i=0; $i <= $tamPop; $i++) { 
 
@@ -193,7 +193,7 @@
 
 				sort($filho[$i]);												// ordena o filho
 
-				for ($y=1; $y <= 12; $y++) { 									// metade filhoA de 1 a 12
+				for ($y=0; $y <= 12; $y++) { 									// metade filhoA de 1 a 12
 					$filhoA[$i][$y] = $filho[$i][$y];
 					echo $filhoA[$i][$y]."-";
 				} echo "<br>";
@@ -202,7 +202,34 @@
 					echo $filhoB[$i][$y]."-";
 				} echo "<br>";
 			}
-// fazer agora filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1]
+// filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1], e assim por diante
+			for ($i=0; $i <= $tamPop ; $i=$i+2) { 
+				// array_merge realiza a fusão das duas parte dos arrays
+				$filhoFusaoA[$i] = array_merge($filhoA[$i], $filhoB[$i+1]);
+				$filhoFusaoB[$i] = array_merge($filhoA[$i+1], $filhoB[$i]);
+
+				foreach ($filhoFusaoA[$i] as $fil) {
+					echo $fil."-";
+				}echo "<br>";
+				foreach ($filhoFusaoB[$i] as $fil) {
+					echo $fil."-";
+				}echo "<br>";
+
+// falta 1 e duplica 1
+			}
+
+			for ($i=0; $i <= $tamPop ; $i=$i+2) { 
+				// echo $elementoFirst[$i]."-";
+				for ($y=0; $y <= 24; $y++) { 
+					// echo $filhoFusaoA[$i][$y]."-";
+					if ($filhoFusaoA[$i][$y] == $elementoFirst[$i]) {
+						echo "iguais ".$filhoFusaoA[$i][$y]."<br>";
+					}
+					if ($filhoFusaoB[$i][$y] == $elementoFirst[$i]) {
+						echo "iguais ".$filhoFusaoB[$i][$y]."<br>";
+					}
+				}
+			}
 
 		}
 
@@ -224,11 +251,11 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	$populacao = $rota->populacao(5);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
-	$rota->fitness($populacao, 9);
+	$rota->fitness($populacao, 5);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
