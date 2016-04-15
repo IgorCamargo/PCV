@@ -203,33 +203,55 @@
 				} echo "<br>";
 			}
 // filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1], e assim por diante
+			$aux = 1;
 			for ($i=0; $i <= $tamPop ; $i=$i+2) { 
 				// array_merge realiza a fusão das duas parte dos arrays
 				$filhoFusaoA[$i] = array_merge($filhoA[$i], $filhoB[$i+1]);
-				$filhoFusaoB[$i] = array_merge($filhoA[$i+1], $filhoB[$i]);
+				$filhoFusaoB[$aux] = array_merge($filhoA[$i+1], $filhoB[$i]);
 
+				echo "cromossomo filho ".($i+1)." -> ";
 				foreach ($filhoFusaoA[$i] as $fil) {
 					echo $fil."-";
 				}echo "<br>";
-				foreach ($filhoFusaoB[$i] as $fil) {
+				echo "cromossomo filho ".($aux+1)." -> ";
+				foreach ($filhoFusaoB[$aux] as $fil) {
 					echo $fil."-";
 				}echo "<br>";
 
-// falta 1 e duplica 1
+				$aux = $aux+2;
 			}
 
-			for ($i=0; $i <= $tamPop ; $i=$i+2) { 
+// monta array filho
+			for ($i=0; $i <= $tamPop; $i=$i+2) { 
+				$fusaoFilhos[$i] = $filhoFusaoA[$i];
+			}
+			for ($i=1; $i <= $tamPop; $i=$i+2) { 
+				$fusaoFilhos[$i] = $filhoFusaoB[$i];
+			}
+
+// verifica se existe no cromossomo filho um valor igual ao ponto de partida
+			for ($i=0; $i <= $tamPop; $i++) { 
 				// echo $elementoFirst[$i]."-";
 				for ($y=0; $y <= 24; $y++) { 
 					// echo $filhoFusaoA[$i][$y]."-";
-					if ($filhoFusaoA[$i][$y] == $elementoFirst[$i]) {
-						echo "iguais ".$filhoFusaoA[$i][$y]."<br>";
+					// if ($filhoFusaoA[$i][$y] == $elementoFirst[$i]) {
+					// 	echo "Cromossomo filho A ".$i." valor igual a partida -> ".$filhoFusaoA[$i][$y]."<br>";
+
+					// }
+					// if ($filhoFusaoB[$i][$y] == $elementoFirst[$i]) {
+					// 	echo "Cromossomo filho B ".$i." valor igual a partida -> ".$filhoFusaoB[$i][$y]."<br>";
+					// }
+					
+					if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {
+						echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
 					}
-					if ($filhoFusaoB[$i][$y] == $elementoFirst[$i]) {
-						echo "iguais ".$filhoFusaoB[$i][$y]."<br>";
-					}
+
+					// $filhoFusaoA[$i];
+					// $filhoFusaoB[$i];
+
 				}
 			}
+
 
 		}
 
