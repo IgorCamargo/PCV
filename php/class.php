@@ -162,7 +162,7 @@
 			print_r($cromossomo);
 			echo "<br>";
 			print_r($indCromossomo);
-			echo "<br>filho<br>";
+			echo "<br></br>filho<br>";
 			
 			for ($y=0; $y <= $tamPop; $y++) {							// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
@@ -177,7 +177,6 @@
 
 		}
 
-// ERRO AQUI ???
 
 // realiza o crossover dos cromossomos
 		private function reproducao($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
@@ -195,14 +194,15 @@
 
 				for ($y=0; $y <= 12; $y++) { 									// metade filhoA de 1 a 12
 					$filhoA[$i][$y] = $filho[$i][$y];
-					echo $filhoA[$i][$y]."-";
-				} echo "<br>";
+					// echo $filhoA[$i][$y]."-";
+				} //echo "<br>";
 				for ($y=13; $y <= 24; $y++) { 									// metade filhoB de 13 a 24
 					$filhoB[$i][$y] = $filho[$i][$y];
-					echo $filhoB[$i][$y]."-";
-				} echo "<br>";
+					// echo $filhoB[$i][$y]."-";
+				} //echo "<br>";
 			}
-// filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1], e assim por diante
+			
+			// filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1], e assim por diante
 			$aux = 1;
 			for ($i=0; $i <= $tamPop ; $i=$i+2) { 
 				// array_merge realiza a fusão das duas parte dos arrays
@@ -221,7 +221,7 @@
 				$aux = $aux+2;
 			}
 
-// monta array filho
+			// monta array filho
 			for ($i=0; $i <= $tamPop; $i=$i+2) { 
 				$fusaoFilhos[$i] = $filhoFusaoA[$i];
 			}
@@ -229,7 +229,7 @@
 				$fusaoFilhos[$i] = $filhoFusaoB[$i];
 			}
 
-// verifica se existe no cromossomo filho um valor igual ao ponto de partida
+			// verifica se existe no cromossomo filho um valor igual ao ponto de partida
 			for ($i=0; $i <= $tamPop; $i++) { 
 				// echo $elementoFirst[$i]."-";
 				for ($y=0; $y <= 24; $y++) { 
@@ -241,29 +241,39 @@
 					}
 				}
 			}
-// verifica se existe no cromossomo valores repetidos
+			
+			// verifica se existe no cromossomo valores repetidos
 			$contador = 0;
 			for ($x=0; $x <= $tamPop; $x++) { 
 				for ($y=0; $y <= 24; $y++) { 
-					// do {
-						for ($z=0; $z <= 24; $z++) { 
-							if ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) {
-								$contador++;
-								if ($contador > 1) {
-									echo "Cromossomo filho ".($x+1)." tem valor repetido na lista -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-									// modifica valor repetido no array
-									$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
-									echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-									$contador = 0;
-								}
+					for ($z=0; $z <= 24; $z++) { 
+						if ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) {
+							$contador++;										// contador que sinaliza quando há algum valor repetido
+							if ($contador > 1) {
+								// echo "Cromossomo filho ".($x+1)." tem valor repetido na lista -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
+								// modifica valor repetido no array
+								$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
+								// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
+								$contador = 0;
+								$z = 0;											// força o for a retornar ao inicio da lista quando encontrar o valor repetido
 							}
 						}
-						$contador = 0;
-					// } while ( <= 10);
+					}
+					$contador = 0;
 				}
 			}
 
+			// teste para consulta
+			for ($i=0; $i < $tamPop; $i++) { 
+				echo "<br>Cromossom filho ".($i+1)." -> ";
+				foreach ($fusaoFilhos[$i] as $x) {
+					echo $x."-";
+				}
+			}
+
+
 		}
+
 
 // soma 1 quando o valor for repetido
 		public function repeticao($cromo) {
