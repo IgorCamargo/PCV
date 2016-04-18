@@ -72,12 +72,12 @@
 				}
 			} while ($comparacao == null);						// enquanto $comparacao for nulo, é porque tem array (cromossomo) iguais, então gera cromossomos novamente
 
-			for ($i=0; $i<=$tamPop; $i++) {				// imprime os cromossomos
+			for ($i=0; $i<=$tamPop; $i++) {						// imprime os cromossomos
 				// echo "first cromo ".$cromossomoRota[$i][0];
 				// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
 				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
-				echo " cromossomo ".$x." -> ";
+				echo " cromossomo pai ".$x." -> ";
 				foreach( $cromossomoRota[$i] AS $cromoRota ) {
 					echo $cromoRota."-";
 				}
@@ -164,7 +164,7 @@
 			print_r($indCromossomo);
 			echo "<br></br>filho<br>";
 			
-			for ($y=0; $y <= $tamPop; $y++) {							// crio cópia dos cromossomos
+			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
 					$cromossomoFilho[$y][$i] = $cromossomosRotas[$y][$i];
 					// echo $cromossomoFilho[$y][$i]."-";
@@ -263,8 +263,29 @@
 				}
 			}
 
-			// teste para consulta
-			for ($i=0; $i < $tamPop; $i++) { 
+			// teste para consulta filhos
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	echo "<br>Cromossom filho ".($i+1)." -> ";
+			// 	foreach ($fusaoFilhos[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
+
+			// adiciona a cidade de partida/chegada nos cromossomos filhos
+			for ($i=0; $i <= $tamPop; $i++) { 
+				shuffle( $fusaoFilhos[$i] );
+				array_unshift($fusaoFilhos[$i], $elementoFirst[$i]);			// adiciona elemento no inicio do array
+				array_push($fusaoFilhos[$i], $elementoFirst[$i]);				// adiciona elemento no fim do array
+			}
+
+			echo "<br></br> ROTA PRONTA: <br>";
+
+			// exibe as rotas prontas
+			for ($i=0; $i <= $tamPop; $i++) { 
+				echo "<br>Cromossom pai ".($i+1)." -> ";
+				foreach ($cromossomosPai[$i] as $x) {
+					echo $x."-";
+				}
 				echo "<br>Cromossom filho ".($i+1)." -> ";
 				foreach ($fusaoFilhos[$i] as $x) {
 					echo $x."-";
@@ -304,11 +325,11 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$populacao = $rota->populacao(5);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	$populacao = $rota->populacao(999);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
-	$rota->fitness($populacao, 5);
+	$rota->fitness($populacao, 999);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
@@ -317,39 +338,3 @@
 	// echo $rota->reproducao();
 
 ?>
-
-
-<!-- 
-cromossomo1 -> 17-15-2-24-19-23-16-3-22-9-4-6-11-5-18-10-20-8-26-25-13-12-1-21-7-14-17-
-cromossomo2 -> 12-5-25-3-14-8-17-2-26-13-7-6-1-11-24-16-22-15-23-19-9-10-21-4-20-18-12-
-
-cromossomo1-filho -> 17-15-2-24-19-23-16-3-22-9-4-6-11-5-18-10-20-8-26-25-13-12-1-21-7-14-17-
-cromossomo2-filho -> 12-5-25-3-14-8-17-2-26-13-7-6-1-11-24-16-22-15-23-19-9-10-21-4-20-18-12-
-
-15-2-24-19-23-16-3-22-9-4-6-11-5-18-10-20-8-26-25-13-12-1-21-7-14
-5-25-3-14-8-17-2-26-13-7-6-1-11-24-16-22-15-23-19-9-10-21-4-20-18
-
-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-18-19-20-21-22-23-24-25-26
-	1-2-3-4-5-6-7-8-9-10-11-12-13-14
-	15-16-18-19-20-21-22-23-24-25-26
-
-1-2-3-4-5-6-7-8-9-10-11-13-14-15-16-17-18-19-20-21-22-23-24-25-26
-	1-2-3-4-5-6-7-8-9-10-11-13-14-15
-	16-17-18-19-20-21-22-23-24-25-26
-
-1-2-3-4-5-6-7-8-9-10-11-12-13-14
-				16-17(15)-18-19-20-21-22-23-24-25-26
-faltou o 15
-tem duplo 17
-substitui um dos 17 pelo 15
-
-				15-16-18-19-20-21-22-23-24-25-26
-1-2-3-4-5-6-7-8-9-10-11-13-14-15(17)
-tem duplo 15
-falta 17
-substitui um dos 15 pelo 17
-
-filho1 -> 1-2-3-4-5-6-7-8-9-10-11-12-13-14-16-15-18-19-20-21-22-23-24-25-26
-filho2 -> 1-2-3-4-5-6-7-8-9-10-11-13-14-17-15-16-18-19-20-21-22-23-24-25-26
-
-embaralho filho1 e filho2 -->
