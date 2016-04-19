@@ -77,11 +77,11 @@
 				// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
 				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
-				echo " cromossomo pai ".$x." -> ";
-				foreach( $cromossomoRota[$i] AS $cromoRota ) {
-					echo $cromoRota."-";
-				}
-				echo "<br>";$x++;
+				// echo " cromossomo pai ".$x." -> ";
+				// foreach( $cromossomoRota[$i] AS $cromoRota ) {
+					// echo $cromoRota."-";
+				// }
+				// echo "<br>";$x++;
 			}
 			return $cromossomoRota;								// retorna matriz de cromossomos - rotas - gerados
 		}
@@ -158,11 +158,11 @@
 
 // armazena array com as melhores rotas e um array com os indices dessas melhores rotas
 		private function selecao($cromossomo, $indCromossomo, $cromossomosRotas, $tamPop) {
-			echo "<br>Rotas ordenadas<br>";
-			print_r($cromossomo);
-			echo "<br>";
-			print_r($indCromossomo);
-			echo "<br></br>filho<br>";
+			// echo "<br>Rotas ordenadas<br>";
+			// print_r($cromossomo);
+			// echo "<br>";
+			// print_r($indCromossomo);
+			// echo "<br></br>filho<br>";
 			
 			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
@@ -209,14 +209,14 @@
 				$filhoFusaoA[$i] = array_merge($filhoA[$i], $filhoB[$i+1]);
 				$filhoFusaoB[$aux] = array_merge($filhoA[$i+1], $filhoB[$i]);
 
-				echo "cromossomo filho ".($i+1)." -> ";
-				foreach ($filhoFusaoA[$i] as $fil) {
-					echo $fil."-";
-				}echo "<br>";
-				echo "cromossomo filho ".($aux+1)." -> ";
-				foreach ($filhoFusaoB[$aux] as $fil) {
-					echo $fil."-";
-				}echo "<br>";
+				// echo "cromossomo filho ".($i+1)." -> ";
+				// foreach ($filhoFusaoA[$i] as $fil) {
+				// 	echo $fil."-";
+				// }echo "<br>";
+				// echo "cromossomo filho ".($aux+1)." -> ";
+				// foreach ($filhoFusaoB[$aux] as $fil) {
+				// 	echo $fil."-";
+				// }echo "<br>";
 
 				$aux = $aux+2;
 			}
@@ -234,10 +234,10 @@
 				// echo $elementoFirst[$i]."-";
 				for ($y=0; $y <= 24; $y++) { 
 					if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {
-						echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
+						// echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
 						// modifica valor repetido no array
 						$fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]);
-						echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
+						// echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
 					}
 				}
 			}
@@ -278,16 +278,36 @@
 				array_push($fusaoFilhos[$i], $elementoFirst[$i]);				// adiciona elemento no fim do array
 			}
 
-			echo "<br></br> ROTA PRONTA: <br>";
+			// exibe as rotas prontas
+			// echo "<br></br> ROTA PRONTA: <br>";
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	echo "<br>Cromossomo pai ".($i+1)." -> ";
+			// 	foreach ($cromossomosPai[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// 	echo "<br>Cromossomo filho ".($i+1)." -> ";
+			// 	foreach ($fusaoFilhos[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
+
+			// cria um array com a nova população pais/filhos
+			$aux = 0;
+			for ($i=0; $i <= $tamPop; $i++) { 
+				$novoCromossomo[$aux] = $cromossomosPai[$i];
+				$aux = $aux+2;
+			}
+			$aux = 1;
+			for ($i=0; $i <= $tamPop; $i++) { 
+				$novoCromossomo[$aux] = $fusaoFilhos[$i];
+				$aux = $aux+2;
+			}
 
 			// exibe as rotas prontas
-			for ($i=0; $i <= $tamPop; $i++) { 
-				echo "<br>Cromossom pai ".($i+1)." -> ";
-				foreach ($cromossomosPai[$i] as $x) {
-					echo $x."-";
-				}
-				echo "<br>Cromossom filho ".($i+1)." -> ";
-				foreach ($fusaoFilhos[$i] as $x) {
+			echo "<br></br>POPULAÇÃO PRONTA<br></br>";
+			for ($i=0; $i <= (($tamPop*2)+1); $i++) { 
+				echo "<br>Cromossomo ".($i+1)." -> ";
+				foreach ($novoCromossomo[$i] as $x) {
 					echo $x."-";
 				}
 			}
