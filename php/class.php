@@ -52,12 +52,9 @@
 			// busca no cromossomo o valor correspondente a cidade escolhida para configurar como partida
 			$key = array_search($cidade, $cromossomo);
 			if( $key!==false ) {
-				$cromossomo[$key] = 0;
+				unset( $cromossomo[$key] );						// destrói variavél com valor igual à cidade escolhida
 			}
-			sort($cromossomo);
-			$cromossomo[0] = $cidade;
-			sort($cromossomo);
-			print_r($cromossomo);
+			sort( $cromossomo );								// ordena o cromossomo
 
 			do {												// entra em loop até gerar população de cromossomos (rotas) sem repetir
 				for ($i=0; $i<= $tamPop; $i++) {				// cria cromossomos aleatórios de acordo com a variável $tamPop
@@ -68,7 +65,7 @@
 					for ($y=0; $y<=$tamPop; $y++) {
 						if ($i!=$y) {
 							// array_diff_assoc() - retorna o que há de diferente entre os indices dos arrays
-							$comparacao = array_diff_assoc($cromossomoRota[$i], $cromossomoRota[$y]);
+							$comparacao = array_diff_assoc( $cromossomoRota[$i], $cromossomoRota[$y] );
 						}
 					}
 				}
@@ -77,6 +74,7 @@
 			// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
 			for ($i=0; $i<=$tamPop; $i++) {
 				// echo "first cromo ".$cromossomoRota[$i][0];
+				array_unshift($cromossomoRota[$i], $cidade);	// adiciona a cidade selecionada no inicio da rota
 				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
 				// echo " cromossomo pai ".$x." -> ";
@@ -397,11 +395,11 @@
 
 // objeto imprime fitness
 	$cidade = 3;
-	$populacao = $rota->populacao(9, $cidade);	// gera rotas
+	$populacao = $rota->populacao(999, $cidade);	// gera rotas
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
-	$rota->avaliacao($populacao, 9);
+	$rota->avaliacao($populacao, 999);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
