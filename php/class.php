@@ -147,33 +147,34 @@
 				$indCidPartida = null;
 				$indCidChegada = null;
 			}
+
 			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);			// $chavesFitness recebe os indices do array $somaFitness como valores
 
-			$this->selecao($somaFitness, $chavesFitness, $cromossomoParaFitness, $tamPop);		// passa para o método selecao o fitness
-
+			// echo "<br>Rotas ordenadas<br>";
+			// print_r($somaFitness);
+			// echo "<br>";
+			// print_r($chavesFitness);
+			// echo "<br></br>filho<br>";
 			echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
+
+			$this->selecao($cromossomoParaFitness, $tamPop);		// passa para o método selecao o fitness
 		}
 
 
-// armazena array com as melhores rotas e um array com os indices dessas melhores rotas
-		private function selecao($cromossomo, $indCromossomo, $cromossomosRotas, $tamPop) {
-			// echo "<br>Rotas ordenadas<br>";
-			// print_r($cromossomo);
-			// echo "<br>";
-			// print_r($indCromossomo);
-			// echo "<br></br>filho<br>";
+// cria cópia do array cromossomo pai para gerar filhos mantendo os pais
+		private function selecao($cromossomos, $tamPop) {
 			
 			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
-					$cromossomoFilho[$y][$i] = $cromossomosRotas[$y][$i];
+					$cromossomoFilho[$y][$i] = $cromossomos[$y][$i];
 					// echo $cromossomoFilho[$y][$i]."-";
 				}
 				// echo "<br>";
 				// print_r($cromossomoFilho[$y]);
 			}
 
-			$this->reproducao($cromossomosRotas, $cromossomoFilho, $tamPop);		// passa os cromossomos pai e filho para reprodução
+			$this->reproducao($cromossomos, $cromossomoFilho, $tamPop);		// passa os cromossomos pai e filho para reprodução
 
 		}
 
@@ -182,16 +183,12 @@
 		private function reproducao($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
 			
 			for ($i=0; $i <= $tamPop; $i++) { 
-
 				$elementoFirst[$i] = $cromossomosFilho[$i][0];					// recebe o primeiro/ultimo elemento
-
 				for ($y=1; $y <= 25 ; $y++) { 									// gera filho/cópia do cromossomo
 					$filho[$i][$y] = $cromossomosFilho[$i][$y];
 					// echo $filho[$i][$y]."-";
 				}//echo "<br>";
-
 				sort($filho[$i]);												// ordena o filho
-
 				for ($y=0; $y <= 12; $y++) { 									// metade filhoA de 1 a 12
 					$filhoA[$i][$y] = $filho[$i][$y];
 					// echo $filhoA[$i][$y]."-";
@@ -208,7 +205,6 @@
 				// array_merge realiza a fusão das duas parte dos arrays
 				$filhoFusaoA[$i] = array_merge($filhoA[$i], $filhoB[$i+1]);
 				$filhoFusaoB[$aux] = array_merge($filhoA[$i+1], $filhoB[$i]);
-
 				// echo "cromossomo filho ".($i+1)." -> ";
 				// foreach ($filhoFusaoA[$i] as $fil) {
 				// 	echo $fil."-";
@@ -217,7 +213,6 @@
 				// foreach ($filhoFusaoB[$aux] as $fil) {
 				// 	echo $fil."-";
 				// }echo "<br>";
-
 				$aux = $aux+2;
 			}
 
@@ -254,12 +249,13 @@
 								// modifica valor repetido no array
 								$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
 								// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-								$contador = 0;
-								$z = 0;											// força o for a retornar ao inicio da lista quando encontrar o valor repetido
+								$contador = 0;									// zera o contador quando encontra algum valor igual
+								// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
+								$z = 0;
 							}
 						}
 					}
-					$contador = 0;
+					$contador = 0;												// zera contador para avaliar próximo cromossomo
 				}
 			}
 
@@ -273,7 +269,7 @@
 
 			// adiciona a cidade de partida/chegada nos cromossomos filhos
 			for ($i=0; $i <= $tamPop; $i++) { 
-				shuffle( $fusaoFilhos[$i] );
+				shuffle( $fusaoFilhos[$i] );									// embaralha cromossoo filho
 				array_unshift($fusaoFilhos[$i], $elementoFirst[$i]);			// adiciona elemento no inicio do array
 				array_push($fusaoFilhos[$i], $elementoFirst[$i]);				// adiciona elemento no fim do array
 			}
@@ -291,7 +287,7 @@
 			// 	}
 			// }
 
-			// cria um array com a nova população pais/filhos
+			// cria um array novoCromossomo com a nova população gerada entre pais/filhos
 			$aux = 0;
 			for ($i=0; $i <= $tamPop; $i++) { 
 				$novoCromossomo[$aux] = $cromossomosPai[$i];
@@ -345,11 +341,11 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$populacao = $rota->populacao(999);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
-	$rota->fitness($populacao, 999);
+	$rota->fitness($populacao, 9);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
