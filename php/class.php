@@ -91,11 +91,10 @@
 
 		public function avaliacao($cromossomo, $tamPop, $era) {
 
-			// retorna o valor inteiro na cerca de 10% do tamanho da população
 			$cont = 1;
-			echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
-			for ($i=0; $i <= $tamPop; $i++) { 
-				echo "<br>Cromossomo ".($i+1)." -> ";
+			echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
+			for ($i=0; $i <= $tamPop; $i++) { 					//*****************
+				echo "<br>Cromossomo ".$i." -> ";
 				foreach ($cromossomo[$i] as $x) {
 					echo $x."-";
 				}
@@ -111,7 +110,7 @@
 				$tamPop = ($tamPop*2)+1;
 				echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
 				for ($i=0; $i <= $tamPop; $i++) { 
-					echo "<br>Cromossomo ".($i+1)." -> ";
+					echo "<br>Cromossomo ".$i." -> ";
 					foreach ($cromossomo[$i] as $x) {
 						echo $x."-";
 					}
@@ -121,8 +120,6 @@
 			}
 
 		}
-
-// ========================================
 
 		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
 		private function fitness($cromossomoParaFitness, $tamPop) {
@@ -188,8 +185,18 @@
 
 			$chavesFitness = array_slice($chavesFitness, 0, 10);	// pega as 10 melhores rotas
 
-			echo "<br>Rotas ordenadas<br>";
-			print_r($somaFitness);
+			
+			for ($i=0; $i < count($chavesFitness); $i++) { 
+				$cromossomoMelhores[$i] = $cromossomoParaFitness[$chavesFitness[$i]];
+				echo "<br>";
+				foreach ($cromossomoMelhores[$i] as $cromo) {
+					echo $cromo."-";
+				}
+			}
+
+
+			// echo "<br>Rotas ordenadas<br>"; *****************
+			// print_r($somaFitness); *****************
 			echo "<br>MELHORES ROTAS<br>";
 			print_r($chavesFitness);
 			// echo "<br></br>filho<br>";
@@ -383,7 +390,7 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$eras = 5;
+	$eras = 9;
 	$popInicial = 9;
 	$cidade = 3;
 	$populacao = $rota->populacao($popInicial, $cidade);		// gera rotas
