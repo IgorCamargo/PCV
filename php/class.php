@@ -42,19 +42,29 @@
 
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Velho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
 		// gera cromossomos das cidades passando como parâmetro $tamPop - quantidade de cromossomos a gerar
-		public function populacao($tamPop) {
+		public function populacao($tamPop, $cidade) {			// cidade recebe um valor entre 1 a 26
 			$de = 1;											// valor inicio
 			$ate = 26;											// valor fim
 			$comparacao = 0;									// variável usada no teste de comparação
 			$x = 1;
 			$cromossomo = range($de,$ate);						// cria o array cromossomo de 1 a 26 (cidades a passar)
 
+			// busca no cromossomo o valor correspondente a cidade escolhida para configurar como partida
+			$key = array_search($cidade, $cromossomo);
+			if( $key!==false ) {
+				$cromossomo[$key] = 0;
+			}
+			sort($cromossomo);
+			$cromossomo[0] = $cidade;
+			sort($cromossomo);
+			print_r($cromossomo);
+
 			do {												// entra em loop até gerar população de cromossomos (rotas) sem repetir
-				for ($i=0; $i<=$tamPop; $i++) {					// cria cromossomos aleatórios de acordo com a variável $tamPop
+				for ($i=0; $i<= $tamPop; $i++) {				// cria cromossomos aleatórios de acordo com a variável $tamPop
 					shuffle( $cromossomo );						// embaralha o cromossomo de forma rândomica
 					$cromossomoRota[$i] = $cromossomo;			// $cromossomoRota recebe cromossomo embaralhado
 				}
-				for ($i=0; $i<=$tamPop; $i++) {			// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
+				for ($i=0; $i<= $tamPop; $i++) {				// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
 					for ($y=0; $y<=$tamPop; $y++) {
 						if ($i!=$y) {
 							// array_diff_assoc() - retorna o que há de diferente entre os indices dos arrays
@@ -64,9 +74,9 @@
 				}
 			} while ($comparacao == null);						// enquanto $comparacao for nulo, é porque tem array (cromossomo) iguais, então gera cromossomos novamente
 
-			for ($i=0; $i<=$tamPop; $i++) {						// imprime os cromossomos
+			// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
+			for ($i=0; $i<=$tamPop; $i++) {
 				// echo "first cromo ".$cromossomoRota[$i][0];
-				// adiciona mais uma posição ao array cromossomo e coloca o valor da posição 0 na última posição
 				$cromossomoRota[$i][26] = $cromossomoRota[$i][0];
 				// echo " -> ".$cromossomoRota[$i][26]." <- ";
 				// echo " cromossomo pai ".$x." -> ";
@@ -81,32 +91,47 @@
 
 // ========================================
 
-		public function avaliacao($cromossomoParaFitness, $tamPop) {
+		public function avaliacao($cromossomo, $tamPop) {
 
-			$x=1;
-			$melhorRota = $this->fitness($cromossomoParaFitness, $tamPop);		// passa para o método fitness a população
-			echo "<br></br>POPULAÇÃO PRONTA ".$x."<br></br>";
-			for ($i=0; $i <= $tamPop; $i++) { 
-				echo "<br>Cromossomo ".($i+1)." -> ";
-				foreach ($cromossomoParaFitness[$i] as $x) {
-					echo $x."-";
-				}
-			}
-			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
-
-
-
-			$x++;
-			$cromossomo = $this->selecao($cromossomoParaFitness, $tamPop);		// passa para o método selecao a população
-			$tamPop = ($tamPop*2)+1;
-			echo "<br></br>POPULAÇÃO PRONTA ".$x."<br></br>";
+			$cont=1;
+			echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
 			for ($i=0; $i <= $tamPop; $i++) { 
 				echo "<br>Cromossomo ".($i+1)." -> ";
 				foreach ($cromossomo[$i] as $x) {
 					echo $x."-";
 				}
 			}
-			$melhorRota = $this->fitness($cromossomo, $tamPop);
+			$melhorRota = $this->fitness($cromossomo, $tamPop);		// passa para o método fitness a população
+			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+
+
+
+			$cont++;
+			$cromossomo = $this->selecao($cromossomo, $tamPop);		// passa para o método selecao a população
+			$tamPop = ($tamPop*2)+1;
+			echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
+			for ($i=0; $i <= $tamPop; $i++) { 
+				echo "<br>Cromossomo ".($i+1)." -> ";
+				foreach ($cromossomo[$i] as $x) {
+					echo $x."-";
+				}
+			}
+			$melhorRota = $this->fitness($cromossomo, $tamPop);		// passa para o método fitness a população
+			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+
+
+
+			$cont++;
+			$cromossomo = $this->selecao($cromossomo, $tamPop);		// passa para o método selecao a população
+			$tamPop = ($tamPop*2)+1;
+			echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
+			for ($i=0; $i <= $tamPop; $i++) { 
+				echo "<br>Cromossomo ".($i+1)." -> ";
+				foreach ($cromossomo[$i] as $x) {
+					echo $x."-";
+				}
+			}
+			$melhorRota = $this->fitness($cromossomo, $tamPop);		// passa para o método fitness a população
 			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 
 
@@ -191,7 +216,7 @@
 		}
 
 
-// cria cópia do array cromossomo pai para gerar filhos mantendo os pais
+		// cria cópia do array cromossomo pai para gerar filhos mantendo os pais
 		private function selecao($cromossomos, $tamPop) {
 			
 			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
@@ -371,7 +396,8 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$populacao = $rota->populacao(9);	// gera rotas
+	$cidade = 3;
+	$populacao = $rota->populacao(9, $cidade);	// gera rotas
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
