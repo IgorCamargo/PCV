@@ -31,12 +31,6 @@
 			'Vitoria'			=>	array('Aracaju' =>1408,	'Belem' =>3108,		'Belo Horizonte' =>524,			'Boa Vista' =>5261,		'Brasilia' =>1239,		'Campo Grande' =>1892,		'Cuiaba' =>2119,		'Curitiba' =>1300,		'Florianopolis' =>1597,		'Fortaleza' =>2397,		'Goiania' =>1428,		'Joao Pessoa' =>2001,		'Maceio' =>1684,	'Manaus' =>4476,		'Natal' =>2178,		'Palmas' =>2214,		'Porto Alegre' =>2001,		'Porto Velho' =>3575,		'Recife' =>1831,	'Rio Branco' =>4109,		'Rio de Janeiro' =>521,			'Salvador' =>1202,		'Sao Luis' =>2607,		'Sao Paulo' =>882,		'Teresinha' =>2171,		'Vitoria' =>0),
 		);
 
-
-		// public function setDistancias($newval)
-		// {
-		// 	$this->prop1 = $newval;
-		// }
-		
 		public function getDistancias($partida, $chegada) {
 			return $this->distancias[$partida][$chegada];
 		}
@@ -47,7 +41,6 @@
 	class Rota extends Cidade {
 
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Velho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
-
 		// gera cromossomos das cidades passando como parâmetro $tamPop - quantidade de cromossomos a gerar
 		public function populacao($tamPop) {
 			$de = 1;											// valor inicio
@@ -61,7 +54,6 @@
 					shuffle( $cromossomo );						// embaralha o cromossomo de forma rândomica
 					$cromossomoRota[$i] = $cromossomo;			// $cromossomoRota recebe cromossomo embaralhado
 				}
-
 				for ($i=0; $i<=$tamPop; $i++) {			// verifica se há cromossomos gêmeos, comparando os arrays 1 por todos
 					for ($y=0; $y<=$tamPop; $y++) {
 						if ($i!=$y) {
@@ -86,8 +78,44 @@
 			return $cromossomoRota;								// retorna matriz de cromossomos - rotas - gerados
 		}
 
+
+// ========================================
+
+		public function avaliacao($cromossomoParaFitness, $tamPop) {
+
+			$x=1;
+			$melhorRota = $this->fitness($cromossomoParaFitness, $tamPop);		// passa para o método fitness a população
+			echo "<br></br>POPULAÇÃO PRONTA ".$x."<br></br>";
+			for ($i=0; $i <= $tamPop; $i++) { 
+				echo "<br>Cromossomo ".($i+1)." -> ";
+				foreach ($cromossomoParaFitness[$i] as $x) {
+					echo $x."-";
+				}
+			}
+			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+
+
+
+			$x++;
+			$cromossomo = $this->selecao($cromossomoParaFitness, $tamPop);		// passa para o método selecao a população
+			$tamPop = ($tamPop*2)+1;
+			echo "<br></br>POPULAÇÃO PRONTA ".$x."<br></br>";
+			for ($i=0; $i <= $tamPop; $i++) { 
+				echo "<br>Cromossomo ".($i+1)." -> ";
+				foreach ($cromossomo[$i] as $x) {
+					echo $x."-";
+				}
+			}
+			$melhorRota = $this->fitness($cromossomo, $tamPop);
+			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+
+
+		}
+
+// ========================================
+
 		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
-		public function fitness($cromossomoParaFitness, $tamPop) {
+		private function fitness($cromossomoParaFitness, $tamPop) {
 			// inicializa as variáveis
 			$cidPartida = null;									// cidade partida
 			$cidChegada = null;									// cidade chegada
@@ -115,20 +143,17 @@
 						// echo "chegada ".$indChegada."<br>";
 						// $somaFitness[$x] = $somaFitness[$x]+1;
 					}
-
 					for ($a=0; $a<=26; $a++) {
 						if ($indPartida-1 == $a) {				// identifica o indice da cidade atual verificada na rota
 							$cidPartida = $cidades[$a];
 							// echo "cid partida ".$cidPartida."<br>";
 							$indCidPartida = $cidPartida;		// $indCidPartida recebe o indice da cidade atual
 						}
-
 						if ($indChegada-1 == $a) {				// identifica o indice da próxima cidade verificada na rota
 							$cidChegada = $cidades[$a];
 							// echo "cid chegada ".$cidChegada."<br>";
 							$indCidChegada = $cidChegada;		// $indCidPartida recebe o indice da próxima cidade
 						}
-
 						// verifica se existe a cidade atual e a próxima cidade e se a próxima cidade existe no array
 						if (($indCidPartida != null) && ($indCidChegada != null) && ($y+1<=26)) {
 							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
@@ -151,14 +176,18 @@
 			asort($somaFitness);								// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);			// $chavesFitness recebe os indices do array $somaFitness como valores
 
-			// echo "<br>Rotas ordenadas<br>";
-			// print_r($somaFitness);
-			// echo "<br>";
-			// print_r($chavesFitness);
+			echo "<br>Rotas ordenadas<br>";
+			print_r($somaFitness);
+			echo "<br>";
+			print_r($chavesFitness);
 			// echo "<br></br>filho<br>";
-			echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
+			// echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
+			$melhorRota = [
+				'melhor_rota'	=> $chavesFitness,
+				'kilometragem'	=> $somaFitness
+			];
 
-			$this->selecao($cromossomoParaFitness, $tamPop);		// passa para o método selecao o fitness
+			return $melhorRota;			
 		}
 
 
@@ -173,14 +202,24 @@
 				// echo "<br>";
 				// print_r($cromossomoFilho[$y]);
 			}
+			// passa os cromossomos pai e filho para reprodução
+			$novoCromossomo = $this->crossover($cromossomos, $cromossomoFilho, $tamPop);
+			// exibe as rotas prontas
+			// echo "<br></br>POPULAÇÃO PRONTA<br></br>";
+			// for ($i=0; $i <= (($tamPop*2)+1); $i++) { 
+			// 	echo "<br>Cromossomo ".($i+1)." -> ";
+			// 	foreach ($novoCromossomo[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
 
-			$this->reproducao($cromossomos, $cromossomoFilho, $tamPop);		// passa os cromossomos pai e filho para reprodução
+			return $novoCromossomo;
 
 		}
 
 
 // realiza o crossover dos cromossomos
-		private function reproducao($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
+		private function crossover($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
 			
 			for ($i=0; $i <= $tamPop; $i++) { 
 				$elementoFirst[$i] = $cromossomosFilho[$i][0];					// recebe o primeiro/ultimo elemento
@@ -299,21 +338,12 @@
 				$aux = $aux+2;
 			}
 
-			// exibe as rotas prontas
-			echo "<br></br>POPULAÇÃO PRONTA<br></br>";
-			for ($i=0; $i <= (($tamPop*2)+1); $i++) { 
-				echo "<br>Cromossomo ".($i+1)." -> ";
-				foreach ($novoCromossomo[$i] as $x) {
-					echo $x."-";
-				}
-			}
-
-
+			return $novoCromossomo;
 		}
 
 
 // soma 1 quando o valor for repetido
-		public function repeticao($cromo) {
+		private function repeticao($cromo) {
 			// echo "<br>valor repetido ".$cromo."<br>";
 			if ($cromo >= 26) {
 				$cromo = 1;
@@ -325,7 +355,7 @@
 
 
 // realiza mutação dos cromossomos
-		public function mutacao() {
+		private function mutacao() {
 
 		}
 	}
@@ -341,11 +371,11 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$populacao = $rota->populacao(9);	// gera rotas, mas terei que passar um array já com as distancias corretas, e não rota nova
+	$populacao = $rota->populacao(9);	// gera rotas
 	// print_r($populacao);
 	// echo "<br>";
 	// print_r($rota->fitness($populacao, 999));
-	$rota->fitness($populacao, 9);
+	$rota->avaliacao($populacao, 9);
 
 // mostra objeto distancia
 	// print_r($distancia->getDistancias('Aracaju','Belem'));// preciso da matriz pronta
