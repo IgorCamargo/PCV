@@ -92,32 +92,45 @@
 		public function avaliacao($cromossomo, $tamPop, $era) {
 
 			$cont = 1;
-			echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
-			for ($i=0; $i <= $tamPop; $i++) { 					//*****************
-				echo "<br>Cromossomo ".$i." -> ";
-				foreach ($cromossomo[$i] as $x) {
-					echo $x."-";
-				}
-			}
+			// echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
+			// for ($i=0; $i <= $tamPop; $i++) { 					//*****************
+			// 	echo "<br>Cromossomo ".$i." -> ";
+			// 	foreach ($cromossomo[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
 			$melhorRota = $this->fitness($cromossomo, $tamPop);		// passa para o método fitness a população
-			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+			// echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 
-			
-			for ($y=0; $y < $era; $y++) { 
+
+			for ($y=0; $y < $era; $y++) {
+
+				// echo "<br>";
+				// print_r($melhorRota['melhor_cromo'][$y]);
+
 				$cont++;
-				$cromossomo = $this->selecao($cromossomo, $tamPop);	// passa para o método selecao a população
-				$tamCromossomo = count($cromossomo);
-				$tamPop = ($tamPop*2)+1;
-				echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>";
-				for ($i=0; $i <= $tamPop; $i++) { 
-					echo "<br>Cromossomo ".$i." -> ";
-					foreach ($cromossomo[$i] as $x) {
-						echo $x."-";
-					}
-				}
+
+				$cromossomo = $melhorRota['melhor_cromo'];			// cromossomo recebe os melhores do fitness
+				$tamPop = (count($cromossomo))-1;					// próxima população será do tamanho correspondente a quantidade de melhores cromossomos
+				// echo "<br>eaueaueauea ".$tamPop;
+
+				$cromossomo = $this->selecao($cromossomo, $tamPop);	// passa para o método selecao a população/cromossomo
+				// $tamCromossomo = count($cromossomo);
+				// $tamPop = ($tamPop*2)+1;
+				// $tamPop = (count($cromossomo))-1;
+				// echo "<br>eaueaueauea ".$tamPop;
+				// echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>"; *******************
+				// for ($i=0; $i <= $tamPop; $i++) {  *******************
+					// echo "<br>Cromossomo ".$i." -> "; *******************
+					// foreach ($cromossomo[$i] as $x) { *******************
+						// echo $x."-"; *******************
+					// } *******************
+				// } *******************
 				$melhorRota = $this->fitness($cromossomo, $tamPop);	// passa para o método fitness a população
-				echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+				// echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 			}
+
+echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 
 		}
 
@@ -185,25 +198,26 @@
 
 			$chavesFitness = array_slice($chavesFitness, 0, 10);	// pega as 10 melhores rotas
 
-			
+			// cria um novo cromossomo com os melhores cromossomos selecionados
 			for ($i=0; $i < count($chavesFitness); $i++) { 
 				$cromossomoMelhores[$i] = $cromossomoParaFitness[$chavesFitness[$i]];
-				echo "<br>";
-				foreach ($cromossomoMelhores[$i] as $cromo) {
-					echo $cromo."-";
-				}
+				// echo "<br>"; *******************
+				// foreach ($cromossomoMelhores[$i] as $cromo) { *******************
+					// echo $cromo."-"; *******************
+				// } *******************
 			}
 
 
 			// echo "<br>Rotas ordenadas<br>"; *****************
 			// print_r($somaFitness); *****************
-			echo "<br>MELHORES ROTAS<br>";
-			print_r($chavesFitness);
+			// echo "<br>MELHORES ROTAS<br>"; *******************
+			// print_r($chavesFitness); *******************
 			// echo "<br></br>filho<br>";
 			// echo "<br>Melhor rota é a rota ".$chavesFitness[0]." com ditancia percorrida = ".$somaFitness[$chavesFitness[0]]."km";
 			$melhorRota = [
 				'melhor_rota'	=> $chavesFitness,
-				'kilometragem'	=> $somaFitness
+				'kilometragem'	=> $somaFitness,
+				'melhor_cromo'	=> $cromossomoMelhores
 			];
 
 			return $melhorRota;			
@@ -390,9 +404,9 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$eras = 9;
-	$popInicial = 9;
-	$cidade = 3;
+	$eras = 499;
+	$popInicial = 999;
+	$cidade = 1;
 	$populacao = $rota->populacao($popInicial, $cidade);		// gera rotas
 	// print_r($populacao);
 	// echo "<br>";
