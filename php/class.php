@@ -94,7 +94,7 @@
 			$cont = 1;
 			echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
 			for ($i=0; $i <= $tamPop; $i++) { 					//*****************
-				echo "<br>Cromossomo ".$i." -> ";
+				echo "<br>Cromossomo ".$i." tamanho ".count($cromossomo[$i])." -> ";
 				foreach ($cromossomo[$i] as $x) {
 					echo $x."-";
 				}
@@ -122,7 +122,7 @@
 				// echo "<br>eaueaueauea ".$tamPop;
 				echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>"; 
 				for ($i=0; $i <= $tamPop; $i++) {  
-					echo "<br>Cromossomo ".$i." -> "; 
+					echo "<br>Cromossomo ".$i." tamanho ".count($cromossomo[$i])." -> ";
 					foreach ($cromossomo[$i] as $x) { 
 						echo $x."-"; 
 					} 
@@ -163,7 +163,7 @@
 
 
 			// passa para o método o cromossomo para realizar a mutação
-			$novoCromossomo = $this->mutacao($cromossomoParaFitness);
+			// $novoCromossomo = $this->mutacao($cromossomoParaFitness);
 
 
 			for ($x=0; $x<=$tamPop; $x++) {
@@ -172,8 +172,10 @@
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
 					if (($y+1)<=26) {									// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
-						echo "<br> PARTIDA - > ".$indPartida = $cromossomoParaFitness[$x][$y]." - ".$x."||".$y;
-						echo "<br> CHEGADA - > ".$indChegada = $cromossomoParaFitness[$x][$y+1]." - ".$x."||".($y+1);
+						// echo "<br> PARTIDA - > ".$indPartida = $cromossomoParaFitness[$x][$y]." - ".$x."||".$y;
+						// echo "<br> CHEGADA - > ".$indChegada = $cromossomoParaFitness[$x][$y+1]." - ".$x."||".($y+1);
+						$indPartida = $cromossomoParaFitness[$x][$y];
+						$indChegada = $cromossomoParaFitness[$x][$y+1];
 // para conferência // echo "<br>----------------------------------------------------<br>";
 						// echo "partida ".$indPartida."<br>";
 						// echo "chegada ".$indChegada."<br>";
@@ -245,8 +247,8 @@
 			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
 					$cromossomoFilho[$y][$i] = $cromossomos[$y][$i];
-					echo $cromossomoFilho[$y][$i]."-";
-				} echo "<br>";
+					//echo $cromossomoFilho[$y][$i]."-";
+				} //echo "<br>";
 				// echo "<br>";
 				// print_r($cromossomoFilho[$y]);
 			}
@@ -276,11 +278,11 @@
 					 // echo $filho[$i][$y]."-";
 				} // echo "<br>";
 				// sort($filho[$i]);									// ordena o filho  *******************************
-				for ($y=1; $y <= 12; $y++) { 						// metade filhoA de 1 a 12       ALTEREI $y=0 para $y=0
+				for ($y=1; $y <= 12; $y++) { 						// metade filhoA de 1 a 12
 					$filhoA[$i][$y] = $filho[$i][$y];
 					// echo $filhoA[$i][$y]."-";
 				} // echo "<br>";
-				for ($y=13; $y <= 24; $y++) { 						// metade filhoB de 13 a 24
+				for ($y=13; $y <= 25; $y++) { 						// metade filhoB de 13 a 25
 					$filhoB[$i][$y] = $filho[$i][$y];
 					// echo $filhoB[$i][$y]."-";
 				} // echo "<br>";
@@ -315,25 +317,42 @@
 				// echo count($fusaoFilhos[$i]);
 			} // echo "<br>";
 
-			// verifica se existe no cromossomo filho um valor igual ao ponto de partida
-			// for ($i=0; $i <= $tamPop; $i++) { **********************************
-				// echo $elementoFirst[$i]."-";
-				// for ($y=0; $y <= 24; $y++) { **********************************
-					// if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {**********************************
-						// echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
-						// modifica valor repetido no array
-						// $fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]);**********************************
-						// echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
-					// }**********************************
-				// }**********************************
-			// }**********************************
-			
+			// // verifica se existe no cromossomo filho um valor igual ao ponto de partida
+			// $contador = 0;
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	// echo $elementoFirst[$i]."-";
+			// 	for ($y=0; $y<=24; $y++) {
+			// 		if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {
+			// 		$contador++;							// contador que sinaliza quando há algum valor repetido
+			// 			// echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
+			// 			// modifica valor repetido no array
+			// 			$fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]); 
+			// 			// echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
+			// 			$contador = 0;									// zera o contador quando encontra algum valor igual									// zera o contador quando encontra algum valor igual
+			// 			// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
+			// 			$z = 0;
+			// 		} 
+			// 	}
+			// 	$contador = 0;
+			// } 
+
+
+			// adiciona a cidade de partida/chegada nos cromossomos filhos
+			for ($i=0; $i <= $tamPop; $i++) { 
+				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
+				array_unshift($fusaoFilhos[$i], $elementoFirst[$i]);// adiciona elemento no inicio do array
+				array_push($fusaoFilhos[$i], $elementoFirst[$i]);	// adiciona elemento no fim do array
+			}
+
+
+
+
 			// verifica se existe no cromossomo valores repetidos
 			$contador = 0;
 			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <24; $y++) { 				// alterei de $y<=24 para $y<24
-					for ($z=0; $z <24; $z++) { 				// alterei de $z<=24 para $z<24
-						if ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) {
+				for ($y=0; $y <=25; $y++) {
+					for ($z=0; $z <=25; $z++) {
+						/* *** */if ( ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) || ($elementoFirst[$x] == $fusaoFilhos[$i][$z]) ) {
 							$contador++;							// contador que sinaliza quando há algum valor repetido
 							if ($contador > 1) {
 								// echo "Cromossomo filho ".($x+1)." tem valor repetido na lista -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
@@ -349,6 +368,28 @@
 					$contador = 0;									// zera contador para avaliar próximo cromossomo
 				}
 			}
+			// verifica se existe no cromossomo filho um valor igual ao ponto de partida
+			// $contador = 0;
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	// echo $elementoFirst[$i]."-";
+			// 	for ($y=0; $y<=25; $y++) {
+			// 		if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {
+			// 		// $contador++;							// contador que sinaliza quando há algum valor repetido
+			// 			// echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
+			// 			// modifica valor repetido no array
+			// 			$fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]); 
+			// 			// echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
+			// 			// $contador = 0;									// zera o contador quando encontra algum valor igual									// zera o contador quando encontra algum valor igual
+			// 			// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
+			// 			// $y = 0;
+			// 		} 
+			// 	}
+			// 	// $contador = 0;
+			// } 
+
+
+
+
 
 			// teste para consulta filhos
 			// for ($i=0; $i <= $tamPop; $i++) { 
@@ -358,12 +399,7 @@
 			// 	}
 			// }
 
-			// adiciona a cidade de partida/chegada nos cromossomos filhos
-			for ($i=0; $i <= $tamPop; $i++) { 
-				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
-				array_unshift($fusaoFilhos[$i], $elementoFirst[$i]);// adiciona elemento no inicio do array
-				array_push($fusaoFilhos[$i], $elementoFirst[$i]);	// adiciona elemento no fim do array
-			}
+
 
 			// exibe as rotas prontas
 			// echo "<br></br> ROTA PRONTA: <br>";
