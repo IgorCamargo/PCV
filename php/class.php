@@ -92,15 +92,16 @@
 		public function avaliacao($cromossomo, $tamPop, $era) {
 
 			$cont = 1;
-			// echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
-			// for ($i=0; $i <= $tamPop; $i++) { 					//*****************
-			// 	echo "<br>Cromossomo ".$i." -> ";
-			// 	foreach ($cromossomo[$i] as $x) {
-			// 		echo $x."-";
-			// 	}
-			// }
+			echo "<br>POPULAÇÃO PRONTA ".$cont."<br>";
+			for ($i=0; $i <= $tamPop; $i++) { 					//*****************
+				echo "<br>Cromossomo ".$i." -> ";
+				foreach ($cromossomo[$i] as $x) {
+					echo $x."-";
+				}
+			}
 			$melhorRota = $this->fitness($cromossomo, $tamPop);		// passa para o método fitness a população
 			// echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+
 
 
 			for ($y=0; $y < $era; $y++) {
@@ -112,20 +113,20 @@
 
 				$cromossomo = $melhorRota['melhor_cromo'];			// cromossomo recebe os melhores do fitness
 				$tamPop = (count($cromossomo))-1;					// próxima população será do tamanho correspondente a quantidade de melhores cromossomos
-				// echo "<br>eaueaueauea ".$tamPop;
+				echo "<br>eaueaueauea ".$tamPop." || <br>";
 
 				$cromossomo = $this->selecao($cromossomo, $tamPop);	// passa para o método selecao a população/cromossomo
 				// $tamCromossomo = count($cromossomo);
-				// $tamPop = ($tamPop*2)+1;
+				$tamPop = ($tamPop*2)+1;
 				// $tamPop = (count($cromossomo))-1;
 				// echo "<br>eaueaueauea ".$tamPop;
-				// echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>"; *******************
-				// for ($i=0; $i <= $tamPop; $i++) {  *******************
-					// echo "<br>Cromossomo ".$i." -> "; *******************
-					// foreach ($cromossomo[$i] as $x) { *******************
-						// echo $x."-"; *******************
-					// } *******************
-				// } *******************
+				echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>"; 
+				for ($i=0; $i <= $tamPop; $i++) {  
+					echo "<br>Cromossomo ".$i." -> "; 
+					foreach ($cromossomo[$i] as $x) { 
+						echo $x."-"; 
+					} 
+				} 
 				$melhorRota = $this->fitness($cromossomo, $tamPop);	// passa para o método fitness a população
 				// echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 			}
@@ -133,13 +134,14 @@
 			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
 			echo "<br> Rota = ";
 			// print_r($melhorRota['melhor_cromo'][0]);
-			$cidades = $this->cidades;
-			// print_r($cidades);
-			for ($i=0; $i < 27; $i++) { 
-				echo " | ".$melhorRota['melhor_cromo'][0][$i]." => ";
-				echo $indCid = ($melhorRota['melhor_cromo'][0][$i])-1;
-				echo $cidades[$indCid];
-			}
+			
+			// $cidades = $this->cidades;
+			// // print_r($cidades);
+			// for ($i=0; $i < 27; $i++) { 
+			// 	echo " | ".$melhorRota['melhor_cromo'][0][$i]." => ";
+			// 	echo $indCid = ($melhorRota['melhor_cromo'][0][$i])-1;
+			// 	echo $cidades[$indCid];
+			// }
 
 		}
 
@@ -169,9 +171,9 @@
 				for ($y=0; $y<=26 ; $y++) { 
 					// echo $cromossomoParaFitness[$x][$y]."-";
 					// $somaFitness[$x] = $somaFitness[$x]+$cromossomoParaFitness[$x][$y];
-					if ($y+1<=26) {									// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
-						$indPartida = $cromossomoParaFitness[$x][$y];
-						$indChegada = $cromossomoParaFitness[$x][$y+1];
+					if (($y+1)<=26) {									// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
+						echo "<br> PARTIDA - > ".$indPartida = $cromossomoParaFitness[$x][$y]." - ".$x."||".$y;
+						echo "<br> CHEGADA - > ".$indChegada = $cromossomoParaFitness[$x][$y+1]." - ".$x."||".($y+1);
 // para conferência // echo "<br>----------------------------------------------------<br>";
 						// echo "partida ".$indPartida."<br>";
 						// echo "chegada ".$indChegada."<br>";
@@ -189,7 +191,7 @@
 							$indCidChegada = $cidChegada;			// $indCidPartida recebe o indice da próxima cidade
 						}
 						// verifica se existe a cidade atual e a próxima cidade e se a próxima cidade existe no array
-						if (($indCidPartida != null) && ($indCidChegada != null) && ($y+1<=26)) {
+						if (($indCidPartida != null) && ($indCidChegada != null) && (($y+1)<=26)) {
 							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
 							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];
 // para conferência // echo "Distancia entre ".$cidPartida." e ".$cidChegada." = ".$distancias[$indCidPartida][$indCidChegada]."<br>";
@@ -209,15 +211,15 @@
 
 			asort($somaFitness);									// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);				// $chavesFitness recebe os indices do array $somaFitness como valores
-			$chavesFitness = array_slice($chavesFitness, 0, 10);	// pega as 10 melhores rotas
+			// $chavesFitness = array_slice($chavesFitness, 0, 10);	// pega as 10 melhores rotas
 
 			// cria um novo cromossomo com os melhores cromossomos selecionados
 			for ($i=0; $i < count($chavesFitness); $i++) { 
 				$cromossomoMelhores[$i] = $cromossomoParaFitness[$chavesFitness[$i]];
-				echo "<br> cromossomo ".$i." - ";
-				foreach ($cromossomoMelhores[$i] as $cromo) {
-					echo $cromo."-";
-				}
+				// echo "<br> cromossomo ".$i." - "; *******************
+				// foreach ($cromossomoMelhores[$i] as $cromo) { *******************
+					// echo $cromo."-"; *******************
+				// } *******************
 			}
 
 
@@ -243,8 +245,8 @@
 			for ($y=0; $y <= $tamPop; $y++) {						// crio cópia dos cromossomos
 				for ($i=0; $i <= 26; $i++) { 
 					$cromossomoFilho[$y][$i] = $cromossomos[$y][$i];
-					// echo $cromossomoFilho[$y][$i]."-";
-				}
+					echo $cromossomoFilho[$y][$i]."-";
+				} echo "<br>";
 				// echo "<br>";
 				// print_r($cromossomoFilho[$y]);
 			}
@@ -266,22 +268,22 @@
 
 // realiza o crossover dos cromossomos
 		private function crossover($cromossomosPai, $cromossomosFilho, $tamPop) {	// $tamPop = 0 a 9 / = 10
-			
+
 			for ($i=0; $i <= $tamPop; $i++) { 
 				$elementoFirst[$i] = $cromossomosFilho[$i][0];		// recebe o primeiro/ultimo elemento
 				for ($y=1; $y <= 25 ; $y++) { 						// gera filho/cópia do cromossomo
 					$filho[$i][$y] = $cromossomosFilho[$i][$y];
-					// echo $filho[$i][$y]."-";
-				}//echo "<br>";
-				sort($filho[$i]);									// ordena o filho
-				for ($y=0; $y <= 12; $y++) { 						// metade filhoA de 1 a 12
+					 // echo $filho[$i][$y]."-";
+				} // echo "<br>";
+				// sort($filho[$i]);									// ordena o filho  *******************************
+				for ($y=1; $y <= 12; $y++) { 						// metade filhoA de 1 a 12       ALTEREI $y=0 para $y=0
 					$filhoA[$i][$y] = $filho[$i][$y];
 					// echo $filhoA[$i][$y]."-";
-				} //echo "<br>";
+				} // echo "<br>";
 				for ($y=13; $y <= 24; $y++) { 						// metade filhoB de 13 a 24
 					$filhoB[$i][$y] = $filho[$i][$y];
 					// echo $filhoB[$i][$y]."-";
-				} //echo "<br>";
+				} // echo "<br>";
 			}
 			
 			// filhoA[0] mistura com filhoB[1] e filhoB[0] junta com filhoA[1], e assim por diante
@@ -304,29 +306,33 @@
 			// monta array filho
 			for ($i=0; $i <= $tamPop; $i=$i+2) { 
 				$fusaoFilhos[$i] = $filhoFusaoA[$i];
-			}
+				// print_r($fusaoFilhos[$i]);
+				// echo count($fusaoFilhos[$i]);
+			} // echo "<br>";
 			for ($i=1; $i <= $tamPop; $i=$i+2) { 
 				$fusaoFilhos[$i] = $filhoFusaoB[$i];
-			}
+				// print_r($fusaoFilhos[$i]);
+				// echo count($fusaoFilhos[$i]);
+			} // echo "<br>";
 
 			// verifica se existe no cromossomo filho um valor igual ao ponto de partida
-			for ($i=0; $i <= $tamPop; $i++) { 
+			// for ($i=0; $i <= $tamPop; $i++) { **********************************
 				// echo $elementoFirst[$i]."-";
-				for ($y=0; $y <= 24; $y++) { 
-					if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {
+				// for ($y=0; $y <= 24; $y++) { **********************************
+					// if ($fusaoFilhos[$i][$y] == $elementoFirst[$i]) {**********************************
 						// echo "Cromossomo filho ".($i+1)." tem valor igual a partida -> ".$fusaoFilhos[$i][$y]."<br>";
 						// modifica valor repetido no array
-						$fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]);
+						// $fusaoFilhos[$i][$y] = $this->repeticao($fusaoFilhos[$i][$y]);**********************************
 						// echo "Cromossomo filho ".($i+1)." tem valor modificado para -> ".$fusaoFilhos[$i][$y]."<br>";
-					}
-				}
-			}
+					// }**********************************
+				// }**********************************
+			// }**********************************
 			
 			// verifica se existe no cromossomo valores repetidos
 			$contador = 0;
 			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <= 24; $y++) { 
-					for ($z=0; $z <= 24; $z++) { 
+				for ($y=0; $y <24; $y++) { 				// alterei de $y<=24 para $y<24
+					for ($z=0; $z <24; $z++) { 				// alterei de $z<=24 para $z<24
 						if ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) {
 							$contador++;							// contador que sinaliza quando há algum valor repetido
 							if ($contador > 1) {
@@ -354,7 +360,7 @@
 
 			// adiciona a cidade de partida/chegada nos cromossomos filhos
 			for ($i=0; $i <= $tamPop; $i++) { 
-				shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho
+				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
 				array_unshift($fusaoFilhos[$i], $elementoFirst[$i]);// adiciona elemento no inicio do array
 				array_push($fusaoFilhos[$i], $elementoFirst[$i]);	// adiciona elemento no fim do array
 			}
@@ -436,8 +442,8 @@
 	// print_r($rota->populacao(9));
 
 // objeto imprime fitness
-	$eras = 199;
-	$popInicial = 9;
+	$eras = 5;
+	$popInicial = 1;
 	$cidade = 1;
 	$populacao = $rota->populacao($popInicial, $cidade);		// gera rotas
 	// print_r($populacao);
