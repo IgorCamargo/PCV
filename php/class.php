@@ -43,6 +43,7 @@
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Velho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
 		// gera cromossomos das cidades passando como parâmetro $tamPop - quantidade de cromossomos a gerar
 		public function populacao($tamPop, $cidade) {				// cidade recebe um valor entre 1 a 26
+			
 			$de = 1;												// valor inicio
 			$ate = 26;												// valor fim
 			$comparacao = 0;										// variável usada no teste de comparação
@@ -321,6 +322,7 @@
 
 		// soma 1 quando o valor for repetido
 		private function modRepeticao($elementoCromo, $elementoFirst) {
+			
 			do {
 				if ($elementoCromo > 26) {
 					$elementoCromo = 1;
