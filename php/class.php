@@ -441,9 +441,30 @@
 			return $novoCromossomo;
 		}
 
-
-// soma 1 quando o valor for repetido
+// verifica se há elementos repetidos
 		private function repeticao($cromo, $elementoFirst, $tamPop) {
+			$elementos = range(1, 26);
+			$cont = 0;
+
+			for ($x=0; $x <= $tamPop; $x++) { 
+				for ($y=0; $y <= 26; $y++) { 
+					for ($z=0; $z <= 25; $z++) { 
+						$cont = 0;
+						if ($cromo[$x][$y] == $elementos[$z]) {
+							$cont++;
+						}
+					}
+					if (($cont == 3) || ($cont == 2)){
+						return false;
+					}
+				}
+			}
+
+			return true;
+
+		}
+// soma 1 quando o valor for repetido
+		private function modRepeticao($cromo, $elementoFirst, $tamPop) {
 			// // echo "<br>valor repetido ".$cromo."<br>";
 			// if ($cromo >= 26) {
 			// 	$cromo = 1;
@@ -452,30 +473,13 @@
 			// }
 			// return $cromo;
 
-			$elementos = range(1, 26);
-			$cont = 0;
-
-			for ($x=0; $x < $tamPop; $x++) { 
-				for ($y=0; $y < 26; $y++) { 
-					for ($z=0; $z < 25; $z++) { 
-						$cont = 0;
-						if ($cromo[$x][$y] == $elementos[$y]) {
-							$cont++;
-						}
-						if ($cont == 3) {
-							$cromo[$x][$y] = $cromo[$x][$y] +1;
-							if ($cromo[$x][$y] > 26) {
-								$cromo[$x][$y] = 1;
-							}
-							$y = 0;
-						} elseif ($cont == 2) {
-							$cromo[$x][$y] = $cromo[$x][$z] +1;
-							if ($cromo[$x][$y] > 26) {
-								$cromo[$x][$y] = 1;
-							}
-							$y = 0;
-						}
+			for ($x=0; $x <= $tamPop; $x++) { 
+				for ($y=0; $y <= 26; $y++) { 
+					$cromo[$x][$y] = $cromo[$x][$y] +1;
+					if ($cromo[$x][$y] > 26) {
+						$cromo[$x][$y] = 1;
 					}
+					$y = 0;
 				}
 			}
 
