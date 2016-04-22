@@ -230,6 +230,11 @@
 				$fusaoFilhos[$i] = $filhoFusaoB[$i];
 			}
 
+
+
+
+
+
 			// adiciona a cidade de partida/chegada nos cromossomos filhos
 			for ($i=0; $i <= $tamPop; $i++) { 
 				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
@@ -238,17 +243,18 @@
 			}
 
 
-			echo "<br></br> ROTA GERADA pré repetição: <br>";
-			for ($i=0; $i <= $tamPop; $i++) { 
-				echo "<br>Cromossomo pai ".($i+1)." -> ";
-				foreach ($cromossomosPai[$i] as $x) {
-					echo $x."-";
-				}
-				echo "<br>Cromossomo filho ".($i+1)." -> ";
-				foreach ($fusaoFilhos[$i] as $x) {
-					echo $x."-";
-				}
-			}
+			// exibe as rotas geradas
+			// echo "<br></br> ROTA GERADA pré repetição: <br>";
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	echo "<br>Cromossomo pai ".($i+1)." -> ";
+			// 	foreach ($cromossomosPai[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// 	echo "<br>Cromossomo filho ".($i+1)." -> ";
+			// 	foreach ($fusaoFilhos[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
 
 			// cria um array novoCromossomo com a nova população gerada entre pais/filhos
 			$aux = 0;
@@ -263,23 +269,21 @@
 			}
 
 			// passa cromossomos filhos para verificar se há elementos repetidos
-			do {
-				$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
-			} while ( $fusaoFilhos == false );
+			$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
 
 
-			// exibe as rotas prontas
-			echo "<br></br> ROTA GERADA pós repetição: <br>";
-			for ($i=0; $i <= $tamPop; $i++) { 
-				echo "<br>Cromossomo pai ".($i+1)." -> ";
-				foreach ($cromossomosPai[$i] as $x) {
-					echo $x."-";
-				}
-				echo "<br>Cromossomo filho ".($i+1)." -> ";
-				foreach ($fusaoFilhos[$i] as $x) {
-					echo $x."-";
-				}
-			}
+			// exibe as rotas geradas
+			// echo "<br></br> ROTA GERADA pós repetição: <br>";
+			// for ($i=0; $i <= $tamPop; $i++) { 
+			// 	echo "<br>Cromossomo pai ".($i+1)." -> ";
+			// 	foreach ($cromossomosPai[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// 	echo "<br>Cromossomo filho ".($i+1)." -> ";
+			// 	foreach ($fusaoFilhos[$i] as $x) {
+			// 		echo $x."-";
+			// 	}
+			// }
 
 			// passa para o método o cromossomo para realizar a mutação
 			// $novoCromossomo = $this->mutacao($novoCromossomo);
@@ -295,10 +299,10 @@
 // echo "<br>";
 
 			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <= 25; $y++) { 
+				for ($y=0; $y < count($elementos); $y++) { 
 					$cont = 0;
 					// echo $y." Y - ";
-					for ($z=1; $z <= 25; $z++) { 
+					for ($z=1; $z < count($cromo[$x]); $z++) { 
 						// echo $z." Z - ";
 						if ($cromo[$x][$z] == $elementoFirst) {
 							$cromo[$x][$z] = $this->modRepeticao($cromo[$x][$z], $elementoFirst);
