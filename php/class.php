@@ -344,36 +344,39 @@
 				array_push($fusaoFilhos[$i], $elementoFirst);	// adiciona elemento no fim do array
 			}
 
-			// verifica se existe no cromossomo valores repetidos
-			$contador = 0;
-			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <= 26; $y++) {
-					for ($z=0; $z <= 26; $z++) {
-						if ( ($fusaoFilhos[$x][$y] == $fusaoFilhos[$x][$z]) || ($elementoFirst == $fusaoFilhos[$x][$z]) ) {
-							$contador++;						// contador que sinaliza quando há algum valor repetido
-
-							if ( ($contador > 1) && (($z != 0) || ($z != 26)) ) {
-								// echo "Cromossomo filho ".($x+1)." tem valor repetido na lista -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-								// modifica valor repetido no array
-								$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
-								// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-								$contador = 0;									// zera o contador quando encontra algum valor igual
-								// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
-								$z = 0;
-							}
-							if ( (($z == 0) || ($z == 26)) && ($contador > 2) ) {
-								// modifica valor repetido no array
-								$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
-								// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
-								$contador = 0;									// zera o contador quando encontra algum valor igual
-								// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
-								$z = 0;
-							}
-						}
-					}
-					$contador = 0;									// zera contador para avaliar próximo cromossomo
-				}
-			}
+// ******************************
+			// // verifica se existe no cromossomo valores repetidos
+			// $elemento = range(1,26);							// cria o array de 1 a 26
+			// $contador = 0;
+			// for ($x=0; $x <= $tamPop; $x++) { 
+			// 	for ($y=0; $y <= 25; $y++) {
+			// 		$contador = 0;									// zera contador para avaliar próximo cromossomo
+			// 		for ($z=0; $z <= 26; $z++) {
+			// 			if ( ($elemento[$y] == $fusaoFilhos[$x][$z]) || ($elementoFirst == $fusaoFilhos[$x][$z]) ) {
+			// 				$contador++;						// contador que sinaliza quando há algum valor repetido
+			// 				if ( ($contador > 1) && (($z>0) || ($z<26)) ) {
+			// 					// modifica valor repetido no array
+			// 					$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
+			// 					// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
+			// 					$contador = 0;									// zera o contador quando encontra algum valor igual
+			// 					// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
+			// 					$z = 0;
+			// 					$y = 0;
+			// 				} elseif ( $contador > 2 ) {
+			// 					// modifica valor repetido no array
+			// 					$fusaoFilhos[$x][$z] = $this->repeticao($fusaoFilhos[$x][$z]);
+			// 					// echo "Cromossomo filho ".($x+1)." tem valor modificado para -> ".$fusaoFilhos[$x][$z]." - indice ".$z."<br>";
+			// 					$contador = 0;									// zera o contador quando encontra algum valor igual
+			// 					// força o for a retornar ao inicio da lista quando encontrar o valor repetido, garantindo que não haverá em toda a lista algum valor repetido
+			// 					$z = 0;
+			// 					$y = 0;
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// }
+			$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
+// ******************************
 			// verifica se existe no cromossomo filho um valor igual ao ponto de partida
 			// $contador = 0;
 			// for ($i=0; $i <= $tamPop; $i++) { 
@@ -440,14 +443,44 @@
 
 
 // soma 1 quando o valor for repetido
-		private function repeticao($cromo) {
-			// echo "<br>valor repetido ".$cromo."<br>";
-			if ($cromo >= 26) {
-				$cromo = 1;
-			} else {
-				$cromo = $cromo+1;
+		private function repeticao($cromo, $elementoFirst, $tamPop) {
+			// // echo "<br>valor repetido ".$cromo."<br>";
+			// if ($cromo >= 26) {
+			// 	$cromo = 1;
+			// } else {
+			// 	$cromo = $cromo+1;
+			// }
+			// return $cromo;
+
+			$elementos = range(1, 26);
+			$cont = 0;
+
+			for ($x=0; $x < $tamPop; $x++) { 
+				for ($y=0; $y < 26; $y++) { 
+					for ($z=0; $z < 25; $z++) { 
+						$cont = 0;
+						if ($cromo[$x][$y] == $elementos[$y]) {
+							$cont++;
+						}
+						if ($cont == 3) {
+							$cromo[$x][$y] = $cromo[$x][$y] +1;
+							if ($cromo[$x][$y] > 26) {
+								$cromo[$x][$y] = 1;
+							}
+							$y = 0;
+						} elseif ($cont == 2) {
+							$cromo[$x][$y] = $cromo[$x][$z] +1;
+							if ($cromo[$x][$y] > 26) {
+								$cromo[$x][$y] = 1;
+							}
+							$y = 0;
+						}
+					}
+				}
 			}
+
 			return $cromo;
+
 		}
 
 
