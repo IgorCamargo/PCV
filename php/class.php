@@ -445,44 +445,42 @@
 		private function repeticao($cromo, $elementoFirst, $tamPop) {
 			$elementos = range(1, 26);
 			$cont = 0;
-
-			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <= 26; $y++) { 
-					for ($z=0; $z <= 25; $z++) { 
+			$repetido = false;
+			do {
+				for ($x=0; $x <= $tamPop; $x++) { 
+					for ($y=0; $y <= 26; $y++) { 
 						$cont = 0;
-						if ($cromo[$x][$y] == $elementos[$z]) {
+						for ($z=0; $z <= 25; $z++) { 
+							if ($cromo[$x][$y] == $elementos[$z]) {
+								$cont++;
+							}
+						}
+						if ($cont == 2) {
+							$cromo[$x][$y] = $this->modRepeticao($cromo[$x][$y]);
+							$repetido = true;
+						}
+						if ($cromo[$x][$y] == $elementoFirst) {
 							$cont++;
+							if ($cont == 3) {
+								$cromo[$x][$y] = $this->modRepeticao($cromo[$x][$y]);
+								$repetido = true;
+							}
 						}
 					}
-					if (($cont == 3) || ($cont == 2)){
-						return false;
-					}
 				}
-			}
-
-			return true;
+			} while ( $repetido == true);
+			
+			return $cromo;
 
 		}
 // soma 1 quando o valor for repetido
-		private function modRepeticao($cromo, $elementoFirst, $tamPop) {
+		private function modRepeticao($cromo) {
 			// // echo "<br>valor repetido ".$cromo."<br>";
-			// if ($cromo >= 26) {
-			// 	$cromo = 1;
-			// } else {
-			// 	$cromo = $cromo+1;
-			// }
-			// return $cromo;
-
-			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y <= 26; $y++) { 
-					$cromo[$x][$y] = $cromo[$x][$y] +1;
-					if ($cromo[$x][$y] > 26) {
-						$cromo[$x][$y] = 1;
-					}
-					$y = 0;
-				}
+			if ($cromo >= 26) {
+				$cromo = 1;
+			} else {
+				$cromo = $cromo+1;
 			}
-
 			return $cromo;
 
 		}
