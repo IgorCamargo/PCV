@@ -115,8 +115,21 @@
 				$melhorRota = $this->fitness($cromossomo, $tamPop);	// passa para o método fitness a população
 			}
 
-			echo "<br>Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia ".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
-			echo "<br> Rota = ";
+			echo "<br></br> ========== Rota ========== <br>";
+			echo "Melhor rota com população max ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia <b>".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km</b>";
+			echo "<br> ========== Rota ========== <br>";
+
+			// print_r($melhorRota['melhor_cromo'][0]);
+			$cidades = $this->cidades;								// cria objeto com as cidades
+			// print_r($cidades);
+			for ($i=0; $i < 27; $i++) { 
+				echo " | ".$melhorRota['melhor_cromo'][0][$i]." => ";
+				$indCid = ($melhorRota['melhor_cromo'][0][$i])-1;
+				echo $cidades[$indCid];
+				echo "<br>";
+			}
+
+
 		}
 
 		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
@@ -170,7 +183,10 @@
 
 			asort($somaFitness);									// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);				// $chavesFitness recebe os indices do array $somaFitness como valores
-			$chavesFitness = array_slice($chavesFitness, 0, 20);	// pega as 10 melhores rotas
+			
+			// $melhores = ($tamPop+1)/2;								// calcula tamanho da população
+			$melhores = 100;
+			$chavesFitness = array_slice($chavesFitness, 0, $melhores);	// pega as melhores rotas de 1/4 da população
 
 			// cria um novo cromossomo com os melhores cromossomos selecionados
 			for ($i=0; $i < count($chavesFitness); $i++) { 
@@ -341,7 +357,7 @@
 
 			$tamCromossomo = (count($cromossomo))-1;
 
-			for ($i=0; $i <= $tamCromossomo; $i=$i+10) { 
+			for ($i=0; $i <= $tamCromossomo; $i=$i+5) { 
 				do {
 					$mutA = rand(1, 24);
 					$mutB = rand(1, 24);
