@@ -116,7 +116,7 @@
 			}
 
 			echo "<br></br> ========== Rota ========== <br>";
-			echo "Melhor rota com população máxima por era de ".($tamPop+1)." é a ".$melhorRota['melhor_rota'][0]." com distancia <b>".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km</b>";
+			echo "Melhor rota com população máxima por era de ".($tamPop+1)." cromossomos é a ".$melhorRota['melhor_rota'][0]."<br> Distancia de <b>".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km</b>";
 			echo "<br> ========== Rota ========== <br>";
 
 			// print_r($melhorRota['melhor_cromo'][0]);
