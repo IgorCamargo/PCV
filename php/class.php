@@ -103,7 +103,8 @@
 				echo "<br>eaueaueauea ".$tamPop." || <br>";
 
 				$cromossomo = $this->selecao($cromossomo, $tamPop, $elementoFirst);	// passa para o método selecao a população/cromossomo
-				$tamPop = ($tamPop*2)+1;
+				$tamPop = (count($cromossomo)-1);
+				// $tamPop = ($tamPop*2)+1;
 				echo "<br></br>POPULAÇÃO PRONTA ".$cont."<br>"; 
 				for ($i=0; $i <= $tamPop; $i++) {  
 					echo "<br>Cromossomo ".$i." tamanho ".count($cromossomo[$i])." -> ";
@@ -222,6 +223,23 @@
 				$aux = $aux+2;
 			}
 
+			// $aux = 1;
+			// for ($i=0; $i <= $tamPop ; $i=$i+2) { 
+			// 	// array_merge realiza a fusão das duas parte dos arrays
+			// 	$c=0;
+			// 	foreach ($filhoFusaoA[$i] as $a) {
+			// 		echo $a."-";
+			// 		$c++;
+			// 	}echo " tamanho ".$c."<br>";
+			// 	$c=0;
+			// 	foreach ($filhoFusaoB[$aux] as $b) {
+			// 		echo $b."-";
+			// 		$c++;
+			// 	}echo " tamanho ".$c."<br>";
+			// 	$aux = $aux+2;
+			// }
+
+
 			// monta array filho
 			for ($i=0; $i <= $tamPop; $i=$i+2) { 
 				$fusaoFilhos[$i] = $filhoFusaoA[$i];
@@ -230,11 +248,6 @@
 				$fusaoFilhos[$i] = $filhoFusaoB[$i];
 			}
 
-
-
-
-
-
 			// adiciona a cidade de partida/chegada nos cromossomos filhos
 			for ($i=0; $i <= $tamPop; $i++) { 
 				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
@@ -242,6 +255,24 @@
 				array_push($fusaoFilhos[$i], $elementoFirst);	// adiciona elemento no fim do array
 			}
 
+
+
+			for ($i=0; $i <= $tamPop; $i++) { 
+				foreach ($fusaoFilhos[$i] as $a) {
+					echo $a."-";
+				}echo "<br>";
+			}
+
+			// passa cromossomos filhos para verificar se há elementos repetidos
+			$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
+
+			echo "<br> modificado <br>";
+
+			for ($i=0; $i <= $tamPop; $i++) { 
+				foreach ($fusaoFilhos[$i] as $a) {
+					echo $a."-";
+				}echo "<br>";
+			}
 
 			// exibe as rotas geradas
 			// echo "<br></br> ROTA GERADA pré repetição: <br>";
@@ -267,10 +298,6 @@
 				$novoCromossomo[$aux] = $fusaoFilhos[$i];
 				$aux = $aux+2;
 			}
-
-			// passa cromossomos filhos para verificar se há elementos repetidos
-			$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
-
 
 			// exibe as rotas geradas
 			// echo "<br></br> ROTA GERADA pós repetição: <br>";
@@ -299,15 +326,15 @@
 // echo "<br>";
 
 			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=0; $y < count($elementos); $y++) { 
+				for ($y=1; $y < (count($cromo[$x])-1); $y++) {	// for ($y=0; $y < count($elementos); $y++) {
 					$cont = 0;
 					// echo $y." Y - ";
-					for ($z=1; $z < count($cromo[$x]); $z++) { 
+					for ($z=1; $z < (count($cromo[$x])-1); $z++) {
 						// echo $z." Z - ";
 						if ($cromo[$x][$z] == $elementoFirst) {
 							$cromo[$x][$z] = $this->modRepeticao($cromo[$x][$z], $elementoFirst);
 						}
-						if ($elementos[$y] == $cromo[$x][$z]) {
+						if ($cromo[$x][$y] == $cromo[$x][$z]) {	// if ($elementos[$y] == $cromo[$x][$z]) {
 							$cont++;
 							if ($cont > 1) {
 								$cromo[$x][$z] = $this->modRepeticao($cromo[$x][$z], $elementoFirst);
@@ -328,11 +355,10 @@
 		private function modRepeticao($elementoCromo, $elementoFirst) {
 			
 			do {
+				$elementoCromo = $elementoCromo + 1;
 				if ($elementoCromo > 26) {
 					$elementoCromo = 1;
-				} else {
-					$elementoCromo = $elementoCromo + 1;
-				}
+				} 
 			} while ( $elementoCromo == $elementoFirst );
 			
 			return $elementoCromo;
