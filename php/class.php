@@ -170,6 +170,7 @@
 
 			asort($somaFitness);									// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);				// $chavesFitness recebe os indices do array $somaFitness como valores
+			$chavesFitness = array_slice($chavesFitness, 0, 20);	// pega as 10 melhores rotas
 
 			// cria um novo cromossomo com os melhores cromossomos selecionados
 			for ($i=0; $i < count($chavesFitness); $i++) { 
@@ -257,34 +258,21 @@
 
 
 
-			for ($i=0; $i <= $tamPop; $i++) { 
-				foreach ($fusaoFilhos[$i] as $a) {
-					echo $a."-";
-				}echo "<br>";
-			}
+			// for ($i=0; $i <= $tamPop; $i++) { *****************************
+			// 	foreach ($fusaoFilhos[$i] as $a) {
+			// 		echo $a."-";
+			// 	}echo "<br>";
+			// }
 
 			// passa cromossomos filhos para verificar se há elementos repetidos
 			$fusaoFilhos = $this->repeticao($fusaoFilhos, $elementoFirst, $tamPop);
 
-			echo "<br> modificado <br>";
+			// echo "<br> modificado <br>";
 
-			for ($i=0; $i <= $tamPop; $i++) { 
-				foreach ($fusaoFilhos[$i] as $a) {
-					echo $a."-";
-				}echo "<br>";
-			}
-
-			// exibe as rotas geradas
-			// echo "<br></br> ROTA GERADA pré repetição: <br>";
-			// for ($i=0; $i <= $tamPop; $i++) { 
-			// 	echo "<br>Cromossomo pai ".($i+1)." -> ";
-			// 	foreach ($cromossomosPai[$i] as $x) {
-			// 		echo $x."-";
-			// 	}
-			// 	echo "<br>Cromossomo filho ".($i+1)." -> ";
-			// 	foreach ($fusaoFilhos[$i] as $x) {
-			// 		echo $x."-";
-			// 	}
+			// for ($i=0; $i <= $tamPop; $i++) { *****************************
+			// 	foreach ($fusaoFilhos[$i] as $a) {
+			// 		echo $a."-";
+			// 	}echo "<br>";
 			// }
 
 			// cria um array novoCromossomo com a nova população gerada entre pais/filhos
@@ -299,21 +287,8 @@
 				$aux = $aux+2;
 			}
 
-			// exibe as rotas geradas
-			// echo "<br></br> ROTA GERADA pós repetição: <br>";
-			// for ($i=0; $i <= $tamPop; $i++) { 
-			// 	echo "<br>Cromossomo pai ".($i+1)." -> ";
-			// 	foreach ($cromossomosPai[$i] as $x) {
-			// 		echo $x."-";
-			// 	}
-			// 	echo "<br>Cromossomo filho ".($i+1)." -> ";
-			// 	foreach ($fusaoFilhos[$i] as $x) {
-			// 		echo $x."-";
-			// 	}
-			// }
-
 			// passa para o método o cromossomo para realizar a mutação
-			// $novoCromossomo = $this->mutacao($novoCromossomo);
+			$novoCromossomo = $this->mutacao($novoCromossomo);
 
 			return $novoCromossomo;
 		}
@@ -323,18 +298,14 @@
 			$elementos = range(1, 26);
 			$cont = 0;
 
-// echo "<br>";
-
 			for ($x=0; $x <= $tamPop; $x++) { 
-				for ($y=1; $y < (count($cromo[$x])-1); $y++) {	// for ($y=0; $y < count($elementos); $y++) {
+				for ($y=1; $y < (count($cromo[$x])-1); $y++) {
 					$cont = 0;
-					// echo $y." Y - ";
 					for ($z=1; $z < (count($cromo[$x])-1); $z++) {
-						// echo $z." Z - ";
 						if ($cromo[$x][$z] == $elementoFirst) {
 							$cromo[$x][$z] = $this->modRepeticao($cromo[$x][$z], $elementoFirst);
 						}
-						if ($cromo[$x][$y] == $cromo[$x][$z]) {	// if ($elementos[$y] == $cromo[$x][$z]) {
+						if ($cromo[$x][$y] == $cromo[$x][$z]) {
 							$cont++;
 							if ($cont > 1) {
 								$cromo[$x][$z] = $this->modRepeticao($cromo[$x][$z], $elementoFirst);
@@ -342,8 +313,8 @@
 								$y=0;
 							}
 						}
-					} //echo "<br>";
-				} //echo "<br>";
+					}
+				}
 			}
 			
 			return $cromo;
@@ -368,14 +339,14 @@
 		// realiza mutação dos cromossomos
 		private function mutacao($cromossomo) {
 
-			do {
-				$mutA = rand(1, 24);
-				$mutB = rand(1, 24);
-			} while ( $mutA==$mutB );
-
 			$tamCromossomo = (count($cromossomo))-1;
 
-			for ($i=0; $i <= $tamCromossomo; $i++) { 
+			for ($i=0; $i <= $tamCromossomo; $i=$i+10) { 
+				do {
+					$mutA = rand(1, 24);
+					$mutB = rand(1, 24);
+				} while ( $mutA==$mutB );
+
 				$auxA = $cromossomo[$i][$mutA];
 				$auxB = $cromossomo[$i][$mutB];
 				$cromossomo[$i][$mutA] = $auxB;
@@ -392,8 +363,8 @@
 	$distancia = new Cidade;
 	$rota = new Rota;
 
-	$eras = 5;
-	$popInicial = 1;
+	$eras = 50;
+	$popInicial = 999;
 	$cidade = 1;
 	$populacao = $rota->populacao($popInicial, $cidade);
 	$rota->avaliacao($populacao, $popInicial, $eras, $cidade);
