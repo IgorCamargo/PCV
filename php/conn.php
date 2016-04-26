@@ -9,7 +9,7 @@
 			$slctCidades = $con->query("SELECT id, CidadeRef FROM historico_rota order by id");
 
 			while( $cit = $slctCidades->fetch_array() ) {
-				echo "Cidade ".$cit['id']." com id ".$cit['CidadeRef']."<br>";
+				// echo "Cidade ".$cit['id']." com id ".$cit['CidadeRef']."<br>";
 			}
 
 			return $slctCidades;
@@ -20,8 +20,18 @@
 			return $this->cidade($con);
 		}
 
-		public function setCidade($con, $cit) {
-			return $this->cidade($con);
+		public function setCidade($con, $cit, $rot) {
+			print_r($cidades = $this->cidade($con));
+
+			while ( $cit = $cidades->fetch_array() ) {
+				echo $cit['CidadeRef']."<br>";
+			}
+			
+
+// UPDATE historico_rota
+// SET Rota = null
+// WHERE CidadeRef = 'Aracaju'
+
 		}
 
 	}
@@ -35,8 +45,9 @@
 	}
 
 	$conect = new Conect;
-	$conect->getCidade($conexao);
+	// $conect->getCidade($conexao);
 	$cidade = 'Aracaju';
-	$conect->setCidade($conexao, $cidade);
+	$rota = '123';
+	$conect->setCidade($conexao, $cidade, $rota);
 
 ?>
