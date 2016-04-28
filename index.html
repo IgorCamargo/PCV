@@ -17,9 +17,9 @@
 	</header>
 
 	<section class="inSelect-map">
-		<form action="rota.html" method="post">
+		<form action="rota.php" method="post">
 			<h2 class="inH2">Selecione a cidade de partida</h2>
-			<select class="inSelect" autofocus required>
+			<select class="inSelect" name="cidade" autofocus required>
 				<option value=""></option>
 				<option value="1">Aracaju</option>
 				<option value="2">Belém</option>
@@ -50,11 +50,19 @@
 			</select>
 
 			<h2 class="inH2">Escolha a quantia de rotas para avaliar</h2>
-			<select class="inSelect" required>
+			<select class="inSelect" name="pop" required>
 				<option value=""></option>
 				<option value="400">400</option>
 				<option value="800">800</option>
 				<option value="1000">1000</option>
+			</select>
+
+			<h2 class="inH2">Escolha a quantidade de eras para gerar</h2>
+			<select class="inSelect" name="era" required>
+				<option value=""></option>
+				<option value="10">10</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
 			</select>
 
 			<button class="inBtnGerar">Gerar rota</button>

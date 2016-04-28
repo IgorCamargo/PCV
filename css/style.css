@@ -55,7 +55,8 @@ html {
 .roSelect-map {
 	position: relative;
 	margin: 1em auto;
-	width: 63.8em;
+	width: 79em;
+	height: 5.5em;
 }
 .roH2 {
 	margin: 0.3em 0 0.3em 0.3em;
@@ -101,12 +102,15 @@ html {
 
 .roBtnGerar {
 	position: absolute;
+	display: block;
+	margin-top: 0.5em;
 	color: #fff;
 	background-color: #111;
 	padding: 0.1em;
 	font-size: 1em;
-	width: 8em;
-	height: 2em;
+	/*width: 8em;*/
+	width: 100%;
+	height: 3em;
 	right: 0;
 	webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;

@@ -19,46 +19,57 @@
 	</header>
 
 	<section class="roSelect-map">
-		<h2 class="roH2">Selecione a cidade de partida</h2>
-		<select class="roSelect" autofocus required>
-			<option value=""></option>
-			<option value="Aracaju">Aracaju</option>
-			<option value="Belem">Belém</option>
-			<option value="Belo Horizonte">Belo Horizonte</option>
-			<option value="Boa Vista">Boa Vista</option>
-			<option value="Brasilia">Brasília</option>
-			<option value="Campo Grande">Campo Grande</option>
-			<option value="Cuiaba">Cuiaba</option>
-			<option value="Curitiba">Curitiba</option>
-			<option value="Florianopolis">Florianópolis</option>
-			<option value="Fortaleza">Fortaleza</option>
-			<option value="Goiania">Goiânia</option>
-			<option value="Joao Pessoa">João Pessoa</option>
-			<option value="Maceio">Maceió</option>
-			<option value="Manaus">Manaus</option>
-			<option value="Natal">Natal</option>
-			<option value="Palmas">Palmas</option>
-			<option value="Porto Alegre">Porto Alegre</option>
-			<option value="Porto Velho">Porto Velho</option>
-			<option value="Recife">Recife</option>
-			<option value="Rio Branco">Rio Branco</option>
-			<option value="Rio de Janeiro">Rio de Janeiro</option>
-			<option value="Salvador">Salvador</option>
-			<option value="Sao Luis">São Luís</option>
-			<option value="Sao Paulo">São Paulo</option>
-			<option value="Teresinha">Teresinha</option>
-			<option value="Vitoria">Vitória</option>
-		</select>
+		<form action="rota.php" method="post">
+			<h2 class="roH2">Selecione a cidade de partida</h2>
+			<select class="roSelect" name="cidade" autofocus required>
+				<option value=""></option>
+				<option value="1">Aracaju</option>
+				<option value="2">Belém</option>
+				<option value="3">Belo Horizonte</option>
+				<option value="4">Boa Vista</option>
+				<option value="5">Brasília</option>
+				<option value="6">Campo Grande</option>
+				<option value="7">Cuiaba</option>
+				<option value="8">Curitiba</option>
+				<option value="9">Florianópolis</option>
+				<option value="10">Fortaleza</option>
+				<option value="11">Goiânia</option>
+				<option value="12">João Pessoa</option>
+				<option value="13">Maceió</option>
+				<option value="14">Manaus</option>
+				<option value="15">Natal</option>
+				<option value="16">Palmas</option>
+				<option value="17">Porto Alegre</option>
+				<option value="18">Porto Velho</option>
+				<option value="19">Recife</option>
+				<option value="20">Rio Branco</option>
+				<option value="21">Rio de Janeiro</option>
+				<option value="22">Salvador</option>
+				<option value="23">São Luís</option>
+				<option value="24">São Paulo</option>
+				<option value="25">Teresinha</option>
+				<option value="26">Vitória</option>
+			</select>
 
-		<h2 class="roH2">Escolha a quantia de rotas para avaliar</h2>
-		<select class="roSelect" required>
-			<option value=""></option>
-			<option value="400">400</option>
-			<option value="800">800</option>
-			<option value="1000">1000</option>
-		</select>
+			<h2 class="roH2">Escolha a quantia de rotas para avaliar</h2>
+			<select class="roSelect" name="pop" required>
+				<option value=""></option>
+				<option value="400">400</option>
+				<option value="800">800</option>
+				<option value="1000">1000</option>
+			</select>
 
-		<button class="roBtnGerar">Gerar nova rota</button>
+			<h2 class="roH2">Escolha a quantidade de eras para gerar</h2>
+			<select class="roSelect" name="era" required>
+				<option value=""></option>
+				<option value="10">10</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+
+			<button class="roBtnGerar">Gerar nova rota</button>
+
+		</form>
 
 	</section>
 
@@ -66,9 +77,13 @@
 		$distancia = new Cidade;
 		$rota = new Rota;
 
-		$eras = 100;
-		$popInicial = 999;
-		$cidade = 1;
+		echo "Era ".$eras = $_POST['era'],
+		" População ".$popInicial = $_POST['pop'],
+		" Cidade ".$cidade = $_POST['cidade'];
+
+		// $eras = 100;
+		// $popInicial = 999;
+		// $cidade = 1;
 		
 		$populacao = $rota->populacao($popInicial, $cidade);
 		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
