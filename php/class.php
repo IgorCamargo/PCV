@@ -115,19 +115,28 @@
 				$melhorRota = $this->fitness($cromossomo, $tamPop);	// passa para o método fitness a população
 			}
 
-			echo "<br></br> ========== Rota ========== <br>";
-			echo "Melhor rota com população máxima por era de ".($tamPop+1)." cromossomos é a ".$melhorRota['melhor_rota'][0]."<br> Distância de <b>".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km</b>";
-			echo "<br> ========== Rota ========== <br>";
+			// echo "<br></br> ========== Rota ========== <br>";
+			// echo "Melhor rota com população máxima por era de ".($tamPop+1)." cromossomos é a ".$melhorRota['melhor_rota'][0]."<br> Distância de <b>".$melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km</b>";
+			$melhorKm = $melhorRota['kilometragem'][$melhorRota['melhor_rota'][0]]." km";
+			// echo "<br> ========== Rota ========== <br>";
 
 			// print_r($melhorRota['melhor_cromo'][0]);
 			$cidades = $this->cidades;								// cria objeto com as cidades
 			// print_r($cidades);
 			for ($i=0; $i < 27; $i++) { 
-				echo " | ".$melhorRota['melhor_cromo'][0][$i]." => ";
+				// echo "<p>";
+				// echo $melhorRota['melhor_cromo'][0][$i]." => ";
 				$indCid = ($melhorRota['melhor_cromo'][0][$i])-1;
-				echo $cidades[$indCid];
-				echo "<br>";
+				// echo $cidades[$indCid]."</p>";
+				$melhorRotaFim[$i] = "<p>".$cidades[$indCid]."</p>";
 			}
+
+			$rotaFinal = [
+				'melhor_km'		=> $melhorKm,
+				'melhor_rota'	=> $melhorRotaFim
+			];
+
+			return $rotaFinal;
 
 
 		}
@@ -379,13 +388,13 @@
 
 
 // testes -------------
-	$distancia = new Cidade;
-	$rota = new Rota;
+	// $distancia = new Cidade;
+	// $rota = new Rota;
 
-	$eras = 100;
-	$popInicial = 999;
-	$cidade = 1;
-	$populacao = $rota->populacao($popInicial, $cidade);
-	$rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+	// $eras = 100;
+	// $popInicial = 999;
+	// $cidade = 1;
+	// $populacao = $rota->populacao($popInicial, $cidade);
+	// $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 ?>

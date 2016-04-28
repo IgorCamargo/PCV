@@ -9,6 +9,8 @@
 	<link rel="shortcut icon" href="css/marcador.png" type="image/x-icon">
 	<link href='https://fonts.googleapis.com/css?family=Dosis:500,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<?php include 'php/class.php'; ?>
 </head>
 <body>
 
@@ -60,38 +62,34 @@
 
 	</section>
 
+	<?php
+		$distancia = new Cidade;
+		$rota = new Rota;
+
+		$eras = 100;
+		$popInicial = 999;
+		$cidade = 1;
+		
+		$populacao = $rota->populacao($popInicial, $cidade);
+		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+
+	?>
+
 	<section class="resultado">
 		<!-- Aqui exibe o mapa com a melhor rota! -->
 		<div class="rota">
-			<div class="rota melhor_rota">Melhor rota encontrada:<h1 style="font-size: 2em;">12345 km</h1></div>
+			<div class="rota melhor_rota">Melhor rota encontrada:<h1 style="font-size: 2em;">
+				<?php
+					echo $rotaBest['melhor_km'];
+				?>
+			</h1></div>
 			<div class="rota melhor_rota melhor_rota_cid">Rota a seguir: 
-				<p>Aracaju</p>
-				<p>Belem</p>
-				<p>Belo Horizonte</p>
-				<p>Boa Vista</p>
-				<p>Brasilia</p>
-				<p>Campo Grande</p>
-				<p>Cuiaba</p>
-				<p>Curitiba</p>
-				<p>Florianopolis</p>
-				<p>Fortaleza</p>
-				<p>Goiania</p>
-				<p>Joao Pessoa</p>
-				<p>Maceio</p>
-				<p>Manaus</p>
-				<p>Natal</p>
-				<p>Palmas</p>
-				<p>Porto Alegre</p>
-				<p>Porto Velho</p>
-				<p>Recife</p>
-				<p>Rio Branco</p>
-				<p>Rio de Janeiro</p>
-				<p>Salvador</p>
-				<p>Sao Luis</p>
-				<p>Sao Paulo</p>
-				<p>Teresinha</p>
-				<p>Vitoria</p>
-				<p>Retorno</p>
+				<?php
+					foreach ( $rotaBest['melhor_rota'] as $rt) {
+						echo $rt;
+					}
+					
+				?>
 			</div>
 		</div>
 		<div class="mapa"></div>
