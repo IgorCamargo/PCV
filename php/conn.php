@@ -9,7 +9,7 @@
 			$slctCidades = $con->query("SELECT id, CidadeRef FROM historico_rota order by id");
 
 			while( $cit = $slctCidades->fetch_array() ) {
-				// echo "Cidade ".$cit['id']." com id ".$cit['CidadeRef']."<br>";
+				echo "Cidade ".$cit['id']." com id ".$cit['CidadeRef']."<br>";
 			}
 
 			return $slctCidades;
@@ -21,10 +21,11 @@
 		}
 
 		public function setCidade($con, $cit, $rot) {
-			print_r($cidades = $this->cidade($con));
+			$cidades = $this->cidade($con);
+			print_r($cidades);
 
 			while ( $cit = $cidades->fetch_array() ) {
-				echo $cit['CidadeRef']."<br>";
+				echo $cit['Id']."<br>";
 			}
 			
 
