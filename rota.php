@@ -67,7 +67,9 @@
 				<option value="100">100</option>
 			</select>
 
-			<button class="roBtnGerar">Gerar nova rota</button>
+			<div class="btnCenter">
+				<button class="roBtnGerar">Gerar nova rota</button>
+			</div>
 
 		</form>
 
@@ -77,16 +79,16 @@
 		$distancia = new Cidade;
 		$rota = new Rota;
 
-		echo "Era ".$eras = $_POST['era'],
-		" População ".$popInicial = $_POST['pop'],
-		" Cidade ".$cidade = $_POST['cidade'];
+		$eras = $_POST['era'];
+		$popInicial = $_POST['pop'];
+		$cidade = $_POST['cidade'];
 
 		// $eras = 100;
 		// $popInicial = 999;
 		// $cidade = 1;
 		
-		$populacao = $rota->populacao($popInicial, $cidade);
-		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+		// $populacao = $rota->populacao($popInicial, $cidade);
+		// $rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 	?>
 

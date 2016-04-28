@@ -99,16 +99,20 @@ html {
 	transition: background-color 0.4s;
 }
 
-
+.btnCenter {
+	width: 15em;
+	margin: 0 auto;
+	background-color: red;
+	height: 3em;
+}
 .roBtnGerar {
-	position: absolute;
+	position: relative;
 	display: block;
 	margin-top: 0.5em;
 	color: #fff;
 	background-color: #111;
 	padding: 0.1em;
 	font-size: 1em;
-	/*width: 8em;*/
 	width: 100%;
 	height: 3em;
 	right: 0;
