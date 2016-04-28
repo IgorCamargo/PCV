@@ -87,8 +87,8 @@
 		// $popInicial = 999;
 		// $cidade = 1;
 		
-		// $populacao = $rota->populacao($popInicial, $cidade);
-		// $rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+		$populacao = $rota->populacao($popInicial, $cidade);
+		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 	?>
 
