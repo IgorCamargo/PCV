@@ -139,23 +139,23 @@ html {
 	height: 43em;
 	background-color: #fff;
 	opacity: 0.6;
-	filter: alpha(opacity=60);
 }
 
 .rota {
 	position: absolute;
 	width: 20%;
 	height: 96%;
-	background-color: red;
+	background-color: black;
 	margin: 1%;
 }
 
 .melhor_rota {
 	width: 98%;
 	height: 4em;
-	background-color: black;
+	/*background-color: black;*/
 	text-align: center;
 	color: white;
+	opacity: 1;
 }
 .melhor_rota span {
 	margin-top: 1em;
@@ -175,7 +175,7 @@ html {
 	position: absolute;
 	width: 77%;
 	height: 96%;
-	background-color: blue;
+	background-color: black;
 	margin: 1%;
 	right: 0;
 }
