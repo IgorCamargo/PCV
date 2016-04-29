@@ -1,12 +1,14 @@
 function initMap() {
-  var chicago = {lat: 41.85, lng: -87.65};
-  var indianapolis = {lat: 39.79, lng: -86.14};
+  var origem = {lat: 41.85, lng: -87.65};
+  var chegada = {lat: 39.79, lng: -86.14};
   // var origem = 'Porto Alegre';
   // var chegada = 'Curitiba';
+var first = new google.maps.LatLng(42.496403, -124.413128);
+var second = new google.maps.LatLng(42.496401, -124.413126);
 
   var map = new google.maps.Map(document.getElementById('mapa'), {
-    center: chicago,
-    scrollwheel: false,
+    center: origem,
+    scrollwheel: true,
     zoom: 7
   });
 
@@ -18,7 +20,8 @@ function initMap() {
   var request = {
     destination: chegada,
     origin: origem,
-    waypoints: [{location: 'Campinas'}, {location: 'Salvador'}],
+    waypoints: [{location: first, stopover: true}, {location: second, stopover: true}],
+    optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
 
