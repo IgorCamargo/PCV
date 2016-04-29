@@ -18,6 +18,10 @@
 		<span>Gerador de rotas utilizando Algoritmo Genético - Problema PCV </span>
 	</header>
 
+	<div class="loading">
+		<span>Carregando</span>
+	</div>
+
 	<section class="roSelect-map">
 		<form action="rota.php" method="post">
 			<h2 class="roH2">Selecione a cidade de partida</h2>
@@ -87,8 +91,8 @@
 		// $popInicial = 999;
 		// $cidade = 1;
 		
-		$populacao = $rota->populacao($popInicial, $cidade);
-		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+		// $populacao = $rota->populacao($popInicial, $cidade);
+		// $rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 	?>
 
