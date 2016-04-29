@@ -93,8 +93,8 @@
 		// $popInicial = 999;
 		// $cidade = 1;
 		
-		$populacao = $rota->populacao($popInicial, $cidade);
-		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+		// $populacao = $rota->populacao($popInicial, $cidade);
+		// $rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 	?>
 
@@ -115,7 +115,11 @@
 				?>
 			</div>
 		</div>
-		<div class="mapa"></div>
+		<div class="mapa" id="mapa">
+			<!-- <iframe src="https://google-developers.appspot.com/maps/documentation/javascript/demos/routing/routing" scrolling="no" frameborder="0"></iframe> -->
+			<script src="js/routing.js"></script>
+    		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+		</div>
 	</section>
 
 	<script type="text/javascript" src="js/class.js" defer></script>
