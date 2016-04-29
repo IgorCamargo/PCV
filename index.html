@@ -10,13 +10,13 @@
 	<link href='https://fonts.googleapis.com/css?family=Dosis:500,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body onload="LoadingOff();">
 
 	<header class="inHeader">
 		<span>Gerador de rotas utilizando Algoritmo Genético - Problema PCV </span>
 	</header>
 
-	<div class="loading">
+	<div id="loading" class="loading">
 		<span>Carregando</span>
 	</div>
 
@@ -69,9 +69,11 @@
 				<option value="100">100</option>
 			</select>
 
-			<button class="inBtnGerar">Gerar rota</button>
+			<button class="inBtnGerar" onclick="LoadingOn();">Gerar rota</button>
 		</form>
 	</section>
+
+	<script type="text/javascript" src="js/class.js"></script>
 
 </body>
 </html>

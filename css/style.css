@@ -190,6 +190,7 @@ html {
 	background-color: yellow;
 	opacity: 0.6;
 	filter: alpha(opacity=60);
+	visibility: hidden;
 }
 .loading span {
 	position: absolute;

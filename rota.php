@@ -12,13 +12,13 @@
 
 	<?php include 'php/class.php'; ?>
 </head>
-<body>
+<body onload="LoadingOff();">
 
 	<header class="inHeader roHeader">
 		<span>Gerador de rotas utilizando Algoritmo Genético - Problema PCV </span>
 	</header>
 
-	<div class="loading">
+	<div id="loading" class="loading">
 		<span>Carregando</span>
 	</div>
 
@@ -72,7 +72,7 @@
 			</select>
 
 			<div class="btnCenter">
-				<button class="roBtnGerar">Gerar nova rota</button>
+				<button class="roBtnGerar" onclick="LoadingOn();">Gerar rota</button>
 			</div>
 
 		</form>
@@ -91,8 +91,8 @@
 		// $popInicial = 999;
 		// $cidade = 1;
 		
-		// $populacao = $rota->populacao($popInicial, $cidade);
-		// $rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+		$populacao = $rota->populacao($popInicial, $cidade);
+		$rotaBest = $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
 
 	?>
 
@@ -115,6 +115,8 @@
 		</div>
 		<div class="mapa"></div>
 	</section>
+
+	<script type="text/javascript" src="js/class.js" defer></script>
 
 </body>
 </html>
