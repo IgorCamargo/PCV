@@ -53,9 +53,9 @@ function initMap() {
       {location: brasilia, stopover: true},
       {location: campoGrande, stopover: true},
       {location: cuiaba, stopover: true},
-      {location: curitiba, stopover: true},
-      {location: florianopolis, stopover: true},
-      {location: fortaleza, stopover: true}
+      {location: curitiba, stopover: true}
+      // {location: florianopolis, stopover: true},
+      // {location: fortaleza, stopover: true}
       // {location: boaVista, stopover: true}
       // {location: boaVista, stopover: true}
       // {location: boaVista, stopover: true}

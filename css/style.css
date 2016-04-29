@@ -102,7 +102,6 @@ html {
 .btnCenter {
 	width: 15em;
 	margin: 0 auto;
-	background-color: red;
 	height: 3em;
 }
 .roBtnGerar {
@@ -152,7 +151,7 @@ html {
 .melhor_rota {
 	width: 98%;
 	height: 4em;
-	/*background-color: black;*/
+	/*background-color: blue;*/
 	text-align: center;
 	color: white;
 	opacity: 1;
@@ -196,8 +195,9 @@ html {
 	width: 80%;
 	height: 3em;
 	margin: 10% 0 0 10%;
-	font-size: 5em;
+	font-size: 4em;
 }
+span { opacity: 1; }
 
 #load {
 	position: relative;
@@ -240,6 +240,33 @@ html {
 		width: 8em;
 		height: 4em;
 	}
+	.loading span {
+		font-size: 2em;
+		text-align: center;
+	}
+	.resultado {
+		margin: 12em auto;
+	}
+	.roBtnGerar {
+		position: relative;
+		margin-top: 1em;
+		padding: 0.1em;
+		font-size: 1em;
+		width: 99%;
+		height: 2.5em;
+	}
+	.rota {
+		/*background-color: red;*/
+		width: 40%;
+	}
+	.melhor_rota {
+		width: 98%;
+		/*background-color: blue;*/
+	}
+	.mapa {
+		width: 55%;
+		background-color: red;
+	}
 }
 
 @media screen and (max-width: 675px) {
@@ -261,14 +288,7 @@ html {
 	}
 	.roSelect {
 		width: 99%;
-	}
-	.roBtnGerar {
-		position: relative;
-		margin-top: 1em;
-		padding: 0.1em;
-		font-size: 1em;
-		width: 99%;
-		height: 2.5em;
+		height: 2em;
 	}
 }
 
