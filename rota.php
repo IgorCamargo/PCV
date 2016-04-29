@@ -19,13 +19,15 @@
 	</header>
 
 	<div id="loading" class="loading">
-		<span>Carregando</span>
+		<span>Calculando a melhor rota, aguarde.
+			<div id="load" class="primeira"></div>
+		</span>
 	</div>
 
 	<section class="roSelect-map">
 		<form action="rota.php" method="post">
 			<h2 class="roH2">Selecione a cidade de partida</h2>
-			<select class="roSelect" name="cidade" autofocus required>
+			<select id="cidade" class="roSelect" name="cidade" autofocus required>
 				<option value=""></option>
 				<option value="1">Aracaju</option>
 				<option value="2">Belém</option>
@@ -56,7 +58,7 @@
 			</select>
 
 			<h2 class="roH2">Escolha a quantia de rotas para avaliar</h2>
-			<select class="roSelect" name="pop" required>
+			<select id="pop" class="roSelect" name="pop" required>
 				<option value=""></option>
 				<option value="400">400</option>
 				<option value="800">800</option>
@@ -64,7 +66,7 @@
 			</select>
 
 			<h2 class="roH2">Escolha a quantidade de eras para gerar</h2>
-			<select class="roSelect" name="era" required>
+			<select id="era" class="roSelect" name="era" required>
 				<option value=""></option>
 				<option value="10">10</option>
 				<option value="50">50</option>

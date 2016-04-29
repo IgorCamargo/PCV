@@ -42,6 +42,8 @@
 	class Rota extends Cidade {
 
 		public $cidades = array('Aracaju','Belem','Belo Horizonte','Boa Vista','Brasilia','Campo Grande','Cuiaba','Curitiba','Florianopolis','Fortaleza','Goiania','Joao Pessoa','Maceio','Manaus','Natal','Palmas','Porto Alegre','Porto Velho','Recife','Rio Branco','Rio de Janeiro','Salvador','Sao Luis','Sao Paulo','Teresinha','Vitoria');
+		
+
 		// gera cromossomos das cidades passando como parâmetro $tamPop - quantidade de cromossomos a gerar
 		public function populacao($tamPop, $cidade) {				// cidade recebe um valor entre 1 a 26
 			
@@ -140,6 +142,7 @@
 
 
 		}
+
 
 		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
 		private function fitness($cromossomoParaFitness, $tamPop) {
@@ -317,6 +320,7 @@
 
 			return $novoCromossomo;
 		}
+
 
 		// verifica se há elementos repetidos
 		private function repeticao($cromo, $elementoFirst, $tamPop) {
