@@ -197,7 +197,7 @@
 			$chavesFitness = array_keys($somaFitness);				// $chavesFitness recebe os indices do array $somaFitness como valores
 			
 			// $melhores = ($tamPop+1)/2;							// calcula tamanho da população
-			$melhores = 100;
+			$melhores = 200;
 			$chavesFitness = array_slice($chavesFitness, 0, $melhores);	// pega as melhores rotas de 1/4 da população
 
 			// cria um novo cromossomo com os melhores cromossomos selecionados
