@@ -162,7 +162,7 @@
 
 			for ($x=0; $x<=$tamPop; $x++) {
 				for ($y=0; $y<=26 ; $y++) { 
-					if (($y+1)<=26) {									// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
+					if (($y+1)<=26) {								// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
 						$indPartida = $cromossomoParaFitness[$x][$y];
 						$indChegada = $cromossomoParaFitness[$x][$y+1];
 					}
@@ -196,7 +196,7 @@
 			asort($somaFitness);									// ordena o array $somaFitness mantendo a associação entre os índices e valores
 			$chavesFitness = array_keys($somaFitness);				// $chavesFitness recebe os indices do array $somaFitness como valores
 			
-			// $melhores = ($tamPop+1)/2;								// calcula tamanho da população
+			// $melhores = ($tamPop+1)/2;							// calcula tamanho da população
 			$melhores = 100;
 			$chavesFitness = array_slice($chavesFitness, 0, $melhores);	// pega as melhores rotas de 1/4 da população
 
@@ -279,14 +279,14 @@
 
 			// adiciona a cidade de partida/chegada nos cromossomos filhos
 			for ($i=0; $i <= $tamPop; $i++) { 
-				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho *************************
+				// shuffle( $fusaoFilhos[$i] );						// embaralha cromossoo filho
 				array_unshift($fusaoFilhos[$i], $elementoFirst);	// adiciona elemento no inicio do array
 				array_push($fusaoFilhos[$i], $elementoFirst);		// adiciona elemento no fim do array
 			}
 
 
 
-			// for ($i=0; $i <= $tamPop; $i++) { *****************************
+			// for ($i=0; $i <= $tamPop; $i++) {
 			// 	foreach ($fusaoFilhos[$i] as $a) {
 			// 		echo $a."-";
 			// 	}echo "<br>";
@@ -297,7 +297,7 @@
 
 			// echo "<br> modificado <br>";
 
-			// for ($i=0; $i <= $tamPop; $i++) { *****************************
+			// for ($i=0; $i <= $tamPop; $i++) {
 			// 	foreach ($fusaoFilhos[$i] as $a) {
 			// 		echo $a."-";
 			// 	}echo "<br>";
