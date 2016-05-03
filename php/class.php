@@ -144,8 +144,8 @@
 		}
 
 
-		// selheciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
-		private function fitness($cromossomoParaFitness, $tamPop) {
+		// seleciona os melhores cromossomos passando como parâmetro a matriz de cromossomos e o tamanho da população que foi gerada
+		public function fitness($cromossomoParaFitness, $tamPop) {	// para usar no teste, tem que mudar para public
 			// inicializa as variáveis
 			$cidPartida = null;										// cidade partida
 			$cidChegada = null;										// cidade chegada
@@ -156,28 +156,33 @@
 			$cidades = $this->cidades;								// armazena o objeto array cidades que extende da classe Cidade
 			$distancias = $this->distancias;						// armazena o objeto matriz distancias que extende da classe Cidade
 
-			for ($a=0; $a<=$tamPop ; $a++) {						// inicializa o array com valores zero
-				$somaFitness[$a] = 0;								// $somaFitness é o array que vai receber a soma das rotas para avaliação
+			for ($b=0; $b<=$tamPop; $b++) {						// inicializa o array com valores zero
+				$somaFitness[$b] = 0;								// $somaFitness é o array que vai receber a soma das rotas para avaliação
 			}
 
 			for ($x=0; $x<=$tamPop; $x++) {
-				for ($y=0; $y<=26 ; $y++) { 
+				for ($y=0; $y<=26; $y++) { 
 					if (($y+1)<=26) {								// armazena o valor que será o indice da cidade e da próxima cidade a ir conforme a rota
+						// echo "<br>partida ".$indPartida = $cromossomoParaFitness[$x][$y]; // comentado para uso no teste
+						// echo "<br>chegada ".$indChegada = $cromossomoParaFitness[$x][$y+1]; // comentado para uso no teste
 						$indPartida = $cromossomoParaFitness[$x][$y];
 						$indChegada = $cromossomoParaFitness[$x][$y+1];
 					}
-					for ($a=0; $a<=26; $a++) {
-						if ($indPartida-1 == $a) {					// identifica o indice da cidade atual verificada na rota
+					for ($a=0; $a<=25; $a++) {
+						if ($indPartida == $a) {					// identifica o indice da cidade atual verificada na rota
 							$cidPartida = $cidades[$a];
 							$indCidPartida = $cidPartida;			// $indCidPartida recebe o indice da cidade atual
 						}
-						if ($indChegada-1 == $a) {					// identifica o indice da próxima cidade verificada na rota
+						if ($indChegada == $a) {					// identifica o indice da próxima cidade verificada na rota
 							$cidChegada = $cidades[$a];
 							$indCidChegada = $cidChegada;			// $indCidPartida recebe o indice da próxima cidade
 						}
 						// verifica se existe a cidade atual e a próxima cidade e se a próxima cidade existe no array
 						if (($indCidPartida != null) && ($indCidChegada != null) && (($y+1)<=26)) {
 							// $somaFitness[$x] acumula a distancia entre as cidades em verificação
+							// echo "<br>De ".$indCidPartida." ate ".$indCidChegada." distancia acumulada de "; // comentado para uso no teste
+							// echo $somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada]; // comentado para uso no teste
+							// echo "<br>======="; // comentado para uso no teste
 							$somaFitness[$x] = $somaFitness[$x] + $distancias[$indCidPartida][$indCidChegada];
 							// reset nas variáveis para não armazena "lixo"
 							$indCidPartida = null;
@@ -395,10 +400,47 @@
 	// $distancia = new Cidade;
 	// $rota = new Rota;
 
-	// $eras = 100;
-	// $popInicial = 999;
-	// $cidade = 1;
-	// $populacao = $rota->populacao($popInicial, $cidade);
-	// $rota->avaliacao($populacao, $popInicial, $eras, $cidade);
+	/*$eras = 100;
+	$popInicial = 100;
+	$cidade = 1;
+	$populacao = $rota->populacao($popInicial, $cidade);
+	$rota->avaliacao($populacao, $popInicial, $eras, $cidade);*/
+
+	// teste para rota fixa:
+	/*$populacao[0]=[
+		0,
+		21,
+		3,
+		13,
+		17,
+		19,
+		6,
+		5,
+		16,
+		8,
+		7,
+		23,
+		20,
+		25,
+		2,
+		4,
+		10,
+		15,
+		1,
+		22,
+		24,
+		9,
+		14,
+		11,
+		18,
+		12,
+		0
+	];
+	$rota = $rota->fitness($populacao, 0);
+	echo "<br>KM percorrida ".$rota['kilometragem'][0];
+	echo "<br>";
+	foreach ($rota['melhor_cromo'][0] as $cromo) {
+		echo " - ".$cromo;
+	}*/
 
 ?>
