@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<?php include 'php/class.php'; ?>
+
 </head>
 <body onload="LoadingOff();">
 
@@ -120,6 +121,7 @@
 		<div class="mapa" id="mapa">
 			<!-- <script src="js/routing.js"></script> -->
 			<!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script> -->
+			<h1>Melhor rota de <?php echo $cidade; ?> gerada com <?php echo $eras; ?> eras e população de <?php echo $popInicial; ?> </h1>
 		</div>
 	</section>
 
