@@ -121,7 +121,7 @@
 		<div class="mapa" id="mapa">
 			<!-- <script src="js/routing.js"></script> -->
 			<!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script> -->
-			<h1>Melhor rota de <?php echo $cidade; ?> gerada com <?php echo $eras; ?> eras e população de <?php echo $popInicial; ?> </h1>
+			<h1>Melhor rota gerada com <?php echo $eras; ?> eras e população de <?php echo $popInicial; ?> </h1>
 		</div>
 	</section>
 
